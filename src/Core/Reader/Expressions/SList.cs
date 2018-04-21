@@ -41,6 +41,14 @@ namespace Splaak.Core.Reader.Expressions
                         return new UnMinExt(Expressions[1].Parse());
                 }
             }
+            else if (Expressions.Length == 2 && Expressions[0] is SSym)
+            {
+                switch (((SSym)Expressions[0]).Value)
+                {
+                    case "+":
+                        return new PlusExt(Expressions[1].Parse(), Expressions[2].Parse());
+                }
+            } 
             throw new ParseException();
         }
 

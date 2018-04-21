@@ -31,7 +31,15 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public IExprExt Parse()
         {
-            throw new System.NotImplementedException();
+            if (Expressions.Length == 1 && Expressions[0] is SSym)
+            {
+                switch (((SSym) Expressions[0]).Value)
+                {
+                    case "not":
+                        return new NotExt(Expressions[1].Parse());
+                }
+            }
+            throw new ParseException();
         }
 
         /// <summary>

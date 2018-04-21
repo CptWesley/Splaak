@@ -21,7 +21,10 @@ namespace Splaak.Core.Reader
         /// <returns>S-expression presented in the input.</returns>
         public static ISExpression Read(string input)
         {
-            return Read(new StringReader(input));
+            using (StringReader sr = new StringReader(input))
+            {
+                return Read(sr);
+            }
         }
 
         private static ISExpression Read(StringReader reader)

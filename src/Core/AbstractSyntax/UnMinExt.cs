@@ -1,5 +1,4 @@
-﻿using System;
-using Splaak.Core.CoreSyntax;
+﻿using Splaak.Core.CoreSyntax;
 
 namespace Splaak.Core.AbstractSyntax
 {
@@ -29,10 +28,9 @@ namespace Splaak.Core.AbstractSyntax
         /// <returns>
         /// Core expression variant.
         /// </returns>
-        /// <exception cref="NotImplementedException"></exception>
         public IExprC Desugar()
         {
-            throw new NotImplementedException();
+            return new MultC(new IntC(-1), Argument.Desugar());
         }
 
         /// <summary>

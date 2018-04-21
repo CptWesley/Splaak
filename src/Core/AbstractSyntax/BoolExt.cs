@@ -28,10 +28,9 @@ namespace Splaak.Core.AbstractSyntax
         /// <returns>
         /// Core expression variant.
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public IExprC Desugar()
         {
-            throw new System.NotImplementedException();
+            return new BoolC(Value);
         }
 
         /// <summary>

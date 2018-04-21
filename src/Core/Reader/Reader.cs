@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using Splaak.Core.Reader.Expressions;
@@ -87,11 +88,18 @@ namespace Splaak.Core.Reader
                     string value = sb.ToString();
                     try
                     {
-                        return new SInt(int.Parse(value));
+                        return new SInt(int.Parse(value, CultureInfo.InvariantCulture));
                     }
-                    catch (FormatException e)
+                    catch (FormatException)
                     {
-                        return new SSym(value);
+                        try
+                        {
+                            return new SFloat(float.Parse(value, CultureInfo.InvariantCulture));
+                        }
+                        catch (FormatException)
+                        {
+                            return new SSym(value);
+                        }
                     }
                 }
             }

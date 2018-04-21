@@ -32,10 +32,15 @@ namespace Splaak.Core.CoreSyntax
         /// </returns>
         public IValue Interpret()
         {
-            IValue v1, v2;
-            if (!((v1 = Argument1.Interpret()) is IntV)) throw new InterpretException();
-            if (!((v2 = Argument2.Interpret()) is IntV)) throw new InterpretException();
-            return new IntV(((IntV) v1).Value + ((IntV) v2).Value);
+            IValue v1 = Argument1.Interpret();
+            IValue v2 = Argument2.Interpret();
+            
+            if (v1 is IntV && v2 is IntV) return new IntV(((IntV) v1).Value + ((IntV) v2).Value);
+            if (v1 is FloatV && v2 is IntV) return new FloatV(((FloatV) v1).Value + ((IntV) v2).Value);
+            if (v1 is IntV && v2 is FloatV) return new FloatV(((IntV) v1).Value + ((FloatV) v2).Value);
+            if (v1 is FloatV && v2 is FloatV) return new FloatV(((FloatV) v1).Value + ((FloatV) v2).Value);
+
+            throw new InterpretException();
         }
 
         /// <summary>

@@ -32,7 +32,7 @@ namespace Splaak.Core.AbstractSyntax
         /// <exception cref="NotImplementedException"></exception>
         public IExprC Desugar()
         {
-            throw new NotImplementedException();
+            return new IfC(Argument.Desugar(), new BoolC(false), new BoolC(true));
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
-﻿using System;
-using Splaak.Core.Values;
+﻿using Splaak.Core.Values;
 
 namespace Splaak.Core.CoreSyntax
 {
@@ -31,7 +30,6 @@ namespace Splaak.Core.CoreSyntax
         /// <returns>
         /// Resulting value.
         /// </returns>
-        /// <exception cref="NotImplementedException"></exception>
         public IValue Interpret()
         {
             IValue v1, v2;

@@ -3,21 +3,21 @@
 namespace Splaak.Core.CoreSyntax
 {
     /// <summary>
-    /// Represents an integer in core syntax.
+    /// Represents a boolean in core syntax.
     /// </summary>
     /// <seealso cref="Splaak.Core.AbstractSyntax.IExprExt" />
-    public class IntC : IExprC
+    public class BoolC : IExprC
     {
         /// <summary>
-        /// The integer value of this core expression.
+        /// The boolean value of this core expression.
         /// </summary>
-        public readonly int Value;
+        public readonly bool Value;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IntC"/> class.
+        /// Initializes a new instance of the <see cref="BoolC"/> class.
         /// </summary>
-        /// <param name="value">The integer value of this core expression.</param>
-        public IntC(int value)
+        /// <param name="value">The boolean value of this core expression.</param>
+        public BoolC(bool value)
         {
             Value = value;
         }
@@ -30,7 +30,7 @@ namespace Splaak.Core.CoreSyntax
         /// </returns>
         public IValue Interpret()
         {
-            return new IntV(Value);
+            return new BoolV(Value);
         }
 
         /// <summary>
@@ -39,6 +39,6 @@ namespace Splaak.Core.CoreSyntax
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => string.Format("IntC({0})", Value);
+        public override string ToString() => string.Format("BoolC({0})", Value);
     }
 }

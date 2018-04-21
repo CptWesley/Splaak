@@ -37,6 +37,8 @@ namespace Splaak.Core.Reader.Expressions
                 {
                     case "not":
                         return new NotExt(Expressions[1].Parse());
+                    case "-":
+                        return new UnMinExt(Expressions[1].Parse());
                 }
             }
             throw new ParseException();

@@ -31,7 +31,7 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public IExprExt Parse()
         {
-            if (Expressions.Length == 1 && Expressions[0] is SSym)
+            if (Expressions.Length == 2 && Expressions[0] is SSym)
             {
                 switch (((SSym) Expressions[0]).Value)
                 {
@@ -41,7 +41,7 @@ namespace Splaak.Core.Reader.Expressions
                         return new UnMinExt(Expressions[1].Parse());
                 }
             }
-            else if (Expressions.Length == 2 && Expressions[0] is SSym)
+            else if (Expressions.Length == 3 && Expressions[0] is SSym)
             {
                 switch (((SSym)Expressions[0]).Value)
                 {
@@ -54,7 +54,7 @@ namespace Splaak.Core.Reader.Expressions
                     case "/":
                         return new DivExt(Expressions[1].Parse(), Expressions[2].Parse());
                 }
-            } 
+            }
             throw new ParseException();
         }
 

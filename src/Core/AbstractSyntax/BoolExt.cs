@@ -40,6 +40,6 @@ namespace Splaak.Core.AbstractSyntax
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => string.Format("SInt({0})", Value);
+        public override string ToString() => string.Format("BoolExt({0})", Value);
     }
 }

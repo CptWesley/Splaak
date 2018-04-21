@@ -1,4 +1,5 @@
-﻿using Splaak.Core.AbstractSyntax;
+﻿using System.Text;
+using Splaak.Core.AbstractSyntax;
 
 namespace Splaak.Core.Reader.Expressions
 {
@@ -31,6 +32,28 @@ namespace Splaak.Core.Reader.Expressions
         public IExprExt Parse()
         {
             throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SList(");
+            for (int i = 0; i < Expressions.Length; ++i)
+            {
+                sb.Append(Expressions[i]);
+                if (i != Expressions.Length - 1)
+                {
+                    sb.Append(", ");
+                }
+            }
+            sb.Append(")");
+            return sb.ToString();
         }
     }
 }

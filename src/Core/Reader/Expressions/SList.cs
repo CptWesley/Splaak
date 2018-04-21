@@ -47,10 +47,12 @@ namespace Splaak.Core.Reader.Expressions
                 {
                     case "+":
                         return new PlusExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "*":
-                        return new MultExt(Expressions[1].Parse(), Expressions[2].Parse());
                     case "-":
                         return new BinMinExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    case "*":
+                        return new MultExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    case "/":
+                        return new DivExt(Expressions[1].Parse(), Expressions[2].Parse());
                 }
             } 
             throw new ParseException();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Splaak.Core.Reader.Expressions;
@@ -83,7 +84,15 @@ namespace Splaak.Core.Reader
                 }
                 else
                 {
-                    return new SSym(sb.ToString());
+                    string value = sb.ToString();
+                    try
+                    {
+                        return new SInt(int.Parse(value));
+                    }
+                    catch (FormatException e)
+                    {
+                        return new SSym(value);
+                    }
                 }
             }
         }

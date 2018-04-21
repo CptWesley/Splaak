@@ -30,7 +30,15 @@ namespace Splaak.Core.Reader.Expressions
         /// <exception cref="System.NotImplementedException"></exception>
         public IExprExt Parse()
         {
-            throw new System.NotImplementedException();
+            switch (Value)
+            {
+                case "true":
+                    return new BoolExt(true);
+                case "false":
+                    return new BoolExt(false);
+                default:
+                    throw new ParseException();
+            }
         }
 
         /// <summary>

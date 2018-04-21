@@ -2,6 +2,9 @@
 
 namespace Splaak
 {
+    /// <summary>
+    /// REPL class.
+    /// </summary>
     public class Program
     {
         /// <summary>

@@ -31,7 +31,7 @@ namespace Splaak.Core.Reader.Expressions
         /// <exception cref="System.NotImplementedException"></exception>
         public IExprExt Parse()
         {
-            throw new System.NotImplementedException();
+            return new IntExt(Value);
         }
 
         /// <summary>

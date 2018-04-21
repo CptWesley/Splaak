@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using Splaak.Core.Reader.Expressions;
+using Splaak.Core.Values;
 
 namespace Splaak.Core.Reader
 {
@@ -25,6 +26,16 @@ namespace Splaak.Core.Reader
             {
                 return Read(sr);
             }
+        }
+
+        /// <summary>
+        /// Executes the specified input.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns>The value obtained by executing the output.</returns>
+        public static IValue Execute(this string input)
+        {
+            return input.Read().Parse().Desugar().Interpret();
         }
 
         private static ISExpression Read(StringReader reader)

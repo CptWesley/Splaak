@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Splaak.Core.Reader;
+using System;
 
 namespace Splaak
 {
@@ -13,6 +14,8 @@ namespace Splaak
         /// <param name="args">The arguments of running the application.</param>
         static void Main(string[] args)
         {
+            Console.WriteLine("(if true 5 0)".Execute());
+
             Console.ReadKey();
         }
     }

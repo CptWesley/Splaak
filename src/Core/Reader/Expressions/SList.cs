@@ -31,6 +31,7 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public IExprExt Parse()
         {
+            SSym s;
             if (Expressions.Length == 2 && Expressions[0] is SSym)
             {
                 switch (((SSym) Expressions[0]).Value)
@@ -54,6 +55,10 @@ namespace Splaak.Core.Reader.Expressions
                     case "/":
                         return new DivExt(Expressions[1].Parse(), Expressions[2].Parse());
                 }
+            }
+            else if (Expressions.Length == 4 && (s = (SSym) Expressions[0]) != null && s.Value == "if")
+            {
+                return new IfExt(Expressions[1].Parse(), Expressions[2].Parse(), Expressions[3].Parse());
             }
             throw new ParseException();
         }

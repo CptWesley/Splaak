@@ -119,6 +119,14 @@ namespace Splaak.Core.Reader
                 ++_column;
             }
         }
+
+        #region Overriding
+
+        public override string ToString()
+        {
+            return $"{nameof(StringReader)}({nameof(Index)}: {Index}, {nameof(Line)}: {Line}, {nameof(Column)}: {Column})";
+        }
+        #endregion
         #endregion
     }
 }

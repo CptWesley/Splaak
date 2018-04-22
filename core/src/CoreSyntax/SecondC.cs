@@ -31,8 +31,7 @@ namespace Splaak.Core.CoreSyntax
         public IValue Interpret()
         {
             IValue v = Argument.Interpret();
-            PairV pair = v as PairV;
-            if (pair != null)
+            if (v is PairV pair)
             {
                 return pair.Right;
             }
@@ -56,9 +55,9 @@ namespace Splaak.Core.CoreSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SecondC)
+            if (obj is SecondC that)
             {
-                return ((SecondC) obj).Argument.Equals(Argument);
+                return that.Argument.Equals(Argument);
             }
             return false;
         }

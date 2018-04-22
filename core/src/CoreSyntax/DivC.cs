@@ -35,10 +35,10 @@ namespace Splaak.Core.CoreSyntax
             IValue v1 = Argument1.Interpret();
             IValue v2 = Argument2.Interpret();
 
-            if (v1 is IntV && v2 is IntV) return new IntV(((IntV)v1).Value / ((IntV)v2).Value);
-            if (v1 is FloatV && v2 is IntV) return new FloatV(((FloatV)v1).Value / ((IntV)v2).Value);
-            if (v1 is IntV && v2 is FloatV) return new FloatV(((IntV)v1).Value / ((FloatV)v2).Value);
-            if (v1 is FloatV && v2 is FloatV) return new FloatV(((FloatV)v1).Value / ((FloatV)v2).Value);
+            if (v1 is IntV   ii1 && v2 is IntV   ii2) return new IntV  (ii1.Value / ii2.Value);
+            if (v1 is FloatV fi1 && v2 is IntV   fi2) return new FloatV(fi1.Value / fi2.Value);
+            if (v1 is IntV   if1 && v2 is FloatV if2) return new FloatV(if1.Value / if2.Value);
+            if (v1 is FloatV ff1 && v2 is FloatV ff2) return new FloatV(ff1.Value / ff2.Value);
 
             throw new InterpretException();
         }
@@ -60,9 +60,8 @@ namespace Splaak.Core.CoreSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is DivC)
+            if (obj is DivC that)
             {
-                DivC that = (DivC) obj;
                 return that.Argument1.Equals(Argument1) && that.Argument2.Equals(Argument2);
             }
             return false;

@@ -12,7 +12,7 @@ namespace Splaak.Core.Reader
     /// <summary>
     /// Class used for reading Splaak code.
     /// </summary>
-    public static class Reader
+    public static class SReader
     {
         /// <summary>
         /// Reads the specified input.

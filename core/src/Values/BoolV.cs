@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a boolean.
     /// </summary>
-    /// <seealso cref="Splaak.Core.Values.IValue" />
+    /// <seealso cref="IValue" />
     public class BoolV : IValue
     {
         /// <summary>

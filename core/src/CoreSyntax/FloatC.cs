@@ -6,7 +6,7 @@ namespace Splaak.Core.CoreSyntax
     /// <summary>
     /// Represents a float in core syntax.
     /// </summary>
-    /// <seealso cref="Splaak.Core.AbstractSyntax.IExprExt" />
+    /// <seealso cref="IExprC" />
     public class FloatC : IExprC
     {
         /// <summary>

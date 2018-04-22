@@ -5,7 +5,7 @@ namespace Splaak.Core.CoreSyntax
     /// <summary>
     /// Represents an equality check in core syntax.
     /// </summary>
-    /// <seealso cref="Splaak.Core.AbstractSyntax.IExprExt" />
+    /// <seealso cref="IExprC" />
     public class EqC : IExprC
     {
         /// <summary>

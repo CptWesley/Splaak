@@ -5,7 +5,7 @@ namespace Splaak.Core.Reader.Expressions
     /// <summary>
     /// Represents an integer.
     /// </summary>
-    /// <seealso cref="Splaak.Core.Reader.Expressions.ISExpression" />
+    /// <seealso cref="ISExpression" />
     public class SInt : ISExpression
     {
         /// <summary>

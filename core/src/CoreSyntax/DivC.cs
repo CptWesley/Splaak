@@ -5,7 +5,7 @@ namespace Splaak.Core.CoreSyntax
     /// <summary>
     /// Represents a division in core syntax.
     /// </summary>
-    /// <seealso cref="Splaak.Core.AbstractSyntax.IExprExt" />
+    /// <seealso cref="IExprC" />
     public class DivC : IExprC
     {
         /// <summary>

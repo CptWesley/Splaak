@@ -5,6 +5,6 @@ namespace Splaak.Core.AbstractSyntax
     /// <summary>
     /// Exception for when parsing the program goes wrong.
     /// </summary>
-    /// <seealso cref="System.Exception" />
+    /// <seealso cref="Exception" />
     public class ParseException : Exception { }
 }

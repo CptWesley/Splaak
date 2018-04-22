@@ -5,7 +5,7 @@ namespace Splaak.Core.CoreSyntax
     /// <summary>
     /// Represents a getter for the first element of a pair.
     /// </summary>
-    /// <seealso cref="AbstractSyntax.IExprExt" />
+    /// <seealso cref="IExprC" />
     public class FirstC : IExprC
     {
         /// <summary>

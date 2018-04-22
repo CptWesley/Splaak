@@ -5,7 +5,7 @@ namespace Splaak.Core.Values
     /// <summary>
     /// Represents a float.
     /// </summary>
-    /// <seealso cref="Splaak.Core.Values.IValue" />
+    /// <seealso cref="IValue" />
     public class FloatV : IValue
     {
         /// <summary>

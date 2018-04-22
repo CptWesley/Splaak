@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents an integer.
     /// </summary>
-    /// <seealso cref="Splaak.Core.Values.IValue" />
+    /// <seealso cref="IValue" />
     public class IntV : IValue
     {
         /// <summary>

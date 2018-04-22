@@ -6,7 +6,7 @@ namespace Splaak.Core.Reader.Expressions
     /// <summary>
     /// Represents a float.
     /// </summary>
-    /// <seealso cref="Splaak.Core.Reader.Expressions.ISExpression" />
+    /// <seealso cref="ISExpression" />
     public class SFloat : ISExpression
     {
         /// <summary>

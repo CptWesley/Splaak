@@ -5,6 +5,7 @@ namespace Splaak.Core.Reader.Expressions
     /// <summary>
     /// Represents a symbol.
     /// </summary>
+    /// /// <seealso cref="ISExpression" />
     public class SSym : ISExpression
     {
         /// <summary>

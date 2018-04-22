@@ -6,7 +6,7 @@ namespace Splaak.Core.CoreSyntax
     /// <summary>
     /// Represents an if-statement in the core syntax.
     /// </summary>
-    /// <seealso cref="Splaak.Core.CoreSyntax.IExprC" />
+    /// <seealso cref="IExprC" />
     public class IfC : IExprC
     {
         /// <summary>

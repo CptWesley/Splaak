@@ -13,9 +13,9 @@ namespace Splaak.Core
         /// </summary>
         /// <param name="input">The input.</param>
         /// <returns>The interpreted input.</returns>
-        public static IValue Interpret(string input)
+        public static IValue Interpret(this string input)
         {
-            return SReader.Read(input).Parse().Desugar().Interpret();
+            return input.Read().Parse().Desugar().Interpret();
         }
     }
 }

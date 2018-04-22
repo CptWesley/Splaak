@@ -31,16 +31,6 @@ namespace Splaak.Core.Reader
             return ReadRoot(new StringReader(input));
         }
 
-        /// <summary>
-        /// Executes the specified input.
-        /// </summary>
-        /// <param name="input">The input.</param>
-        /// <returns>The value obtained by executing the output.</returns>
-        public static IValue Execute(this string input)
-        {
-            return input.Read().Parse().Desugar().Interpret();
-        }
-
         private static void Skip(this StringReader reader)
         {
             reader.ReadWhile(CharacterSkipPredicate);

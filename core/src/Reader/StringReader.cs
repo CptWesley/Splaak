@@ -9,22 +9,14 @@ namespace Splaak.Core.Reader
     /// </summary>
     internal class StringReader
     {
-        #region Constants
-
         private const string StringEndMessage = "The string cannot be read further. Use the " + nameof(CanRead) + " property to check if the string can be read.";
         private const char NewlineCharacter = (char)10;
-        #endregion
-
-        #region Fields
 
         private string _s;
         private int _index;
 
         private int _line = 1;
         private int _column = 1;
-        #endregion
-
-        #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StringReader" /> class.
@@ -34,9 +26,6 @@ namespace Splaak.Core.Reader
         {
             _s = s ?? throw new ArgumentNullException(nameof(s));
         }
-        #endregion
-
-        #region Properties
 
         /// <summary>
         /// Gets whether the string can be read further.
@@ -57,9 +46,6 @@ namespace Splaak.Core.Reader
         /// Gets the column (horizontal) position in the string.
         /// </summary>
         public int Column => _column;
-        #endregion
-
-        #region Methods
 
         /// <summary>
         /// Peeks at the value of the next character without advancing the reader's position.
@@ -120,13 +106,9 @@ namespace Splaak.Core.Reader
             }
         }
 
-        #region Overriding
-
         public override string ToString()
         {
             return $"{nameof(StringReader)}({nameof(Index)}: {Index}, {nameof(Line)}: {Line}, {nameof(Column)}: {Column})";
         }
-        #endregion
-        #endregion
     }
 }

@@ -54,9 +54,8 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is GeqExt)
+            if (obj is GeqExt that)
             {
-                GeqExt that = (GeqExt) obj;
                 return that.Argument1.Equals(Argument1) && that.Argument2.Equals(Argument2);
             }
             return false;

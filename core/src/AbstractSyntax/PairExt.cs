@@ -52,9 +52,8 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is PairExt)
+            if (obj is PairExt that)
             {
-                PairExt that = (PairExt) obj;
                 return that.Left.Equals(Left) && that.Right.Equals(Right);
             }
             return false;

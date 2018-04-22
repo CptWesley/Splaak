@@ -50,9 +50,9 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is BoolExt)
+            if (obj is BoolExt that)
             {
-                return ((BoolExt) obj).Value == Value;
+                return that.Value == Value;
             }
             return false;
         }

@@ -52,9 +52,8 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is LtExt)
+            if (obj is LtExt that)
             {
-                LtExt that = (LtExt) obj;
                 return that.Argument1.Equals(Argument1) && that.Argument2.Equals(Argument2);
             }
             return false;

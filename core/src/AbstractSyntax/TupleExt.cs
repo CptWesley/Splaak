@@ -73,9 +73,8 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is TupleExt)
+            if (obj is TupleExt that)
             {
-                TupleExt that = (TupleExt) obj;
                 if (that.Elements.Length != Elements.Length)
                 {
                     return false;

@@ -52,9 +52,8 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is BinMinExt)
+            if (obj is BinMinExt that)
             {
-                BinMinExt that = (BinMinExt) obj;
                 return that.Argument1.Equals(Argument1) && that.Argument2.Equals(Argument2);
             }
             return false;

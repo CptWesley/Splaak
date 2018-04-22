@@ -51,9 +51,9 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is FloatExt)
+            if (obj is FloatExt that)
             {
-                return Math.Abs(((FloatExt) obj).Value - Value) < 0.001;
+                return Math.Abs(that.Value - Value) < 0.001;
             }
             return false;
         }

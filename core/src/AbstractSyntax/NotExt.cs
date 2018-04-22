@@ -50,9 +50,9 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is NotExt)
+            if (obj is NotExt that)
             {
-                return ((NotExt) obj).Argument.Equals(Argument);
+                return that.Argument.Equals(Argument);
             }
             return false;
         }

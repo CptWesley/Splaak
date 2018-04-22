@@ -54,9 +54,8 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is IfExt)
+            if (obj is IfExt that)
             {
-                IfExt that = (IfExt) obj;
                 return that.Condition.Equals(Condition) &&
                     that.Then.Equals(Then) &&
                     that.Else.Equals(Else);

@@ -111,20 +111,17 @@ namespace Splaak.Core.Reader
         {
             reader.Skip();
             string word = reader.ReadWhile(SameWordPredicate);
-            try
+            if (int.TryParse(word, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out int integerValue))
             {
-                return new SInt(int.Parse(word, CultureInfo.InvariantCulture));
+                return new SInt(integerValue);
             }
-            catch (FormatException)
+            else if (float.TryParse(word, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float floatValue))
             {
-                try
-                {
-                    return new SFloat(float.Parse(word, CultureInfo.InvariantCulture));
-                }
-                catch (FormatException)
-                {
-                    return new SSym(word);
-                }
+                return new SFloat(floatValue);
+            }
+            else
+            {
+                return new SSym(word);
             }
         }
     }

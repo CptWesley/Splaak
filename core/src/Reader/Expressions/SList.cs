@@ -19,7 +19,7 @@ namespace Splaak.Core.Reader.Expressions
         /// Initializes a new instance of the <see cref="SList"/> class.
         /// </summary>
         /// <param name="expressions">The expressions contained in this list.</param>
-        public SList(ISExpression[] expressions)
+        public SList(params ISExpression[] expressions)
         {
             Expressions = expressions;
         }

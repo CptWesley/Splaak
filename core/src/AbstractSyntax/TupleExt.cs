@@ -18,7 +18,7 @@ namespace Splaak.Core.AbstractSyntax
         /// Initializes a new instance of the <see cref="TupleExt"/> class.
         /// </summary>
         /// <param name="elements">The elements of this tuple.</param>
-        public TupleExt(IExprExt[] elements)
+        public TupleExt(params IExprExt[] elements)
         {
             Elements = elements;
         }

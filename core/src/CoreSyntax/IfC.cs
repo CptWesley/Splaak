@@ -37,12 +37,11 @@ namespace Splaak.Core.CoreSyntax
         public IValue Interpret()
         {
             IValue condv = Condition.Interpret();
-            if (!(condv is BoolV)) throw new InterpretException();
-            if (((BoolV) condv).Value)
+            if (condv is BoolV cond)
             {
-                return Then.Interpret();
+                return cond.Value ? Then.Interpret() : Else.Interpret();
             }
-            return Else.Interpret();
+            throw new InterpretException();
         }
 
         /// <summary>
@@ -62,9 +61,8 @@ namespace Splaak.Core.CoreSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is IfC)
+            if (obj is IfC that)
             {
-                IfC that = (IfC) obj;
                 return that.Condition.Equals(Condition) &&
                        that.Then.Equals(Then) &&
                        that.Else.Equals(Else);

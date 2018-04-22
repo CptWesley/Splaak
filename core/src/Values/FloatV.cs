@@ -39,9 +39,9 @@ namespace Splaak.Core.Values
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is FloatV)
+            if (obj is FloatV that)
             {
-                return Math.Abs(((FloatV) obj).Value - Value) < 0.001;
+                return Math.Abs(that.Value - Value) < 0.001;
             }
             return false;
         }

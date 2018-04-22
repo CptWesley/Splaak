@@ -37,9 +37,9 @@
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is BoolV)
+            if (obj is BoolV that)
             {
-                return ((BoolV) obj).Value == Value;
+                return that.Value == Value;
             }
             return false;
         }

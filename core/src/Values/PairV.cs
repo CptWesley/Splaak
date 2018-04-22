@@ -39,9 +39,8 @@
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is PairV)
+            if (obj is PairV that)
             {
-                PairV that = (PairV) obj;
                 return that.Left.Equals(Left) && that.Right.Equals(Right);
             }
             return false;

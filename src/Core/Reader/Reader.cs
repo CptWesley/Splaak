@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Text;
 using Splaak.Core.Reader.Expressions;
 using Splaak.Core.Values;
@@ -15,6 +14,16 @@ namespace Splaak.Core.Reader
     /// </summary>
     public static class Reader
     {
+        private const char ListStart = '(';
+        private const char ListEnd = ')';
+        private const char ListSeparator = ' ';
+
+        private static readonly Func<char, bool> CharacterSkipPredicate = (char c) => char.IsWhiteSpace(c) ||
+                                                                                      char.IsControl(c);
+
+        private static readonly Func<char, bool> SameWordPredicate = (char c) => c != ListEnd &&
+                                                                                 !CharacterSkipPredicate(c);
+
         /// <summary>
         /// Reads the specified input.
         /// </summary>
@@ -22,10 +31,7 @@ namespace Splaak.Core.Reader
         /// <returns>S-expression presented in the input.</returns>
         public static ISExpression Read(this string input)
         {
-            using (StringReader sr = new StringReader(input))
-            {
-                return Read(sr);
-            }
+            return ReadRoot(new StringReader(input));
         }
 
         /// <summary>
@@ -38,28 +44,40 @@ namespace Splaak.Core.Reader
             return input.Read().Parse().Desugar().Interpret();
         }
 
+        private static void Skip(this StringReader reader)
+        {
+            reader.ReadWhile(CharacterSkipPredicate);
+        }
+
+        private static ISExpression ReadRoot(StringReader reader)
+        {
+            ISExpression expression = Read(reader);
+            reader.Skip();
+
+            if (reader.CanRead)
+            {
+                throw new ReaderException($"End of structure was expected, found '{reader.Peek()}' instead.");
+            }
+
+            return expression;
+        }
+
         private static ISExpression Read(StringReader reader)
         {
-            while (true)
+            reader.Skip();
+            char c = reader.Peek();
+
+            if (c == ListStart)
             {
-                char c = (char) reader.Peek();
-                if (c == '(')
-                {
-                    reader.Read();
-                    return ReadList(reader);
-                }
-                else if (c == ')')
-                {
-                    throw new ReaderException();
-                }
-                else if (c >= 33 && c <= 126)
-                {
-                    return ReadWord(reader);
-                }
-                else
-                {
-                    reader.Read();
-                }
+                return ReadList(reader);
+            }
+            else if (c == ListEnd)
+            {
+                throw new ReaderException($"Parenthesis mismatch: closing parenthesis was not opened at line {reader.Line}, column {reader.Column}.");
+            }
+            else
+            {
+                return ReadWord(reader);
             }
         }
 
@@ -67,54 +85,45 @@ namespace Splaak.Core.Reader
         {
             List<ISExpression> expressions = new List<ISExpression>();
 
-            while (true)
+            int ln = reader.Line, col = reader.Column;
+
+            reader.Read(); // pop off opening parenthesis
+
+            while (reader.CanRead)
             {
-                char c = (char) reader.Peek();
-                if (c == ')')
+                reader.Skip();
+                char c = reader.Peek();
+                if (c == ListEnd)
                 {
-                    reader.Read();
+                    reader.Read(); // pop off closing parenthesis
                     return new SList(expressions.ToArray());
-                }
-                else if (c >= 33 && c <= 126)
-                {
-                    expressions.Add(Read(reader));
                 }
                 else
                 {
-                    reader.Read();
+                    expressions.Add(Read(reader));
                 }
             }
+
+            throw new ReaderException($"Parenthesis mismatch: opening parenthesis was not closed at line {ln}, column {col}. End of structure expected.");
         }
 
         private static ISExpression ReadWord(StringReader reader)
         {
-            StringBuilder sb = new StringBuilder();
-            while (true)
+            reader.Skip();
+            string word = reader.ReadWhile(SameWordPredicate);
+            try
             {
-                char c = (char) reader.Peek();
-                if (c >= 33 && c <= 126 && c != '(' && c != ')')
+                return new SInt(int.Parse(word, CultureInfo.InvariantCulture));
+            }
+            catch (FormatException)
+            {
+                try
                 {
-                    reader.Read();
-                    sb.Append(c);
+                    return new SFloat(float.Parse(word, CultureInfo.InvariantCulture));
                 }
-                else
+                catch (FormatException)
                 {
-                    string value = sb.ToString();
-                    try
-                    {
-                        return new SInt(int.Parse(value, CultureInfo.InvariantCulture));
-                    }
-                    catch (FormatException)
-                    {
-                        try
-                        {
-                            return new SFloat(float.Parse(value, CultureInfo.InvariantCulture));
-                        }
-                        catch (FormatException)
-                        {
-                            return new SSym(value);
-                        }
-                    }
+                    return new SSym(word);
                 }
             }
         }

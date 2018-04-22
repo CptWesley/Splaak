@@ -1,38 +1,37 @@
-﻿using Splaak.Core.AbstractSyntax;
-using Splaak.Core.AbstractSyntax.Types;
+﻿using Splaak.Core.CoreSyntax;
+using Splaak.Core.CoreSyntax.Types;
 
-namespace Splaak.Core.Reader.Expressions
+namespace Splaak.Core.AbstractSyntax.Types
 {
     /// <summary>
-    /// Represents an integer.
+    /// Represents an integer in abstract syntax.
     /// </summary>
-    /// <seealso cref="ISExpression" />
-    public class SInt : ISExpression
+    /// <seealso cref="IExprExt" />
+    public class IntExt : IExprExt
     {
         /// <summary>
-        /// The value of the expression.
+        /// The integer value of this abstract expression.
         /// </summary>
         public readonly int Value;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SInt"/> class.
+        /// Initializes a new instance of the <see cref="IntExt"/> class.
         /// </summary>
-        /// <param name="value">The value of the expression.</param>
-        public SInt(int value)
+        /// <param name="value">The integer value of this abstract expression.</param>
+        public IntExt(int value)
         {
             Value = value;
         }
 
         /// <summary>
-        /// Parses this s-expression.
+        /// Desugars this abstract expression.
         /// </summary>
         /// <returns>
-        /// Abstract syntax-tree structure.
+        /// Core expression variant.
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IExprExt Parse()
+        public IExprC Desugar()
         {
-            return new IntExt(Value);
+            return new IntC(Value);
         }
 
         /// <summary>
@@ -41,7 +40,7 @@ namespace Splaak.Core.Reader.Expressions
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString() => $"SInt({Value})";
+        public override string ToString() => $"IntExt({Value})";
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
@@ -52,7 +51,7 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SInt that)
+            if (obj is IntExt that)
             {
                 return that.Value == Value;
             }

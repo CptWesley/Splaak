@@ -1,38 +1,39 @@
-﻿using Splaak.Core.AbstractSyntax;
-using Splaak.Core.AbstractSyntax.Types;
+﻿using Splaak.Core.CoreSyntax;
+using Splaak.Core.CoreSyntax.BinOps;
 
-namespace Splaak.Core.Reader.Expressions
+namespace Splaak.Core.AbstractSyntax.BinOps
 {
     /// <summary>
-    /// Represents an integer.
+    /// Represents a multiplication.
     /// </summary>
-    /// <seealso cref="ISExpression" />
-    public class SInt : ISExpression
+    /// <seealso cref="IExprExt" />
+    public class MultExt : IExprExt
     {
         /// <summary>
-        /// The value of the expression.
+        /// The arguments for the multiplication.
         /// </summary>
-        public readonly int Value;
+        public readonly IExprExt Argument1, Argument2;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SInt"/> class.
+        /// Initializes a new instance of the <see cref="PlusExt"/> class.
         /// </summary>
-        /// <param name="value">The value of the expression.</param>
-        public SInt(int value)
+        /// <param name="arg1">The left argument of the multiplication.</param>
+        /// <param name="arg2">The right argument of the multiplication.</param>
+        public MultExt(IExprExt arg1, IExprExt arg2)
         {
-            Value = value;
+            Argument1 = arg1;
+            Argument2 = arg2;
         }
 
         /// <summary>
-        /// Parses this s-expression.
+        /// Desugars this abstract expression.
         /// </summary>
         /// <returns>
-        /// Abstract syntax-tree structure.
+        /// Core expression variant.
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IExprExt Parse()
+        public IExprC Desugar()
         {
-            return new IntExt(Value);
+            return new MultC(Argument1.Desugar(), Argument2.Desugar());
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace Splaak.Core.Reader.Expressions
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString() => $"SInt({Value})";
+        public override string ToString() => $"MultExt({Argument1}, {Argument2})";
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
@@ -52,9 +53,9 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SInt that)
+            if (obj is MultExt that)
             {
-                return that.Value == Value;
+                return that.Argument1.Equals(Argument1) && that.Argument2.Equals(Argument2);
             }
             return false;
         }
@@ -67,7 +68,7 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override int GetHashCode()
         {
-            return GetType().GetHashCode() * Value.GetHashCode();
+            return GetType().GetHashCode() * Argument1.GetHashCode() * Argument2.GetHashCode() ^ 2;
         }
     }
 }

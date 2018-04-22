@@ -1,38 +1,41 @@
-﻿using Splaak.Core.AbstractSyntax;
-using Splaak.Core.AbstractSyntax.Types;
+﻿using Splaak.Core.Values;
 
-namespace Splaak.Core.Reader.Expressions
+namespace Splaak.Core.CoreSyntax.BinOps
 {
     /// <summary>
-    /// Represents an integer.
+    /// Represents an equality check in core syntax.
     /// </summary>
-    /// <seealso cref="ISExpression" />
-    public class SInt : ISExpression
+    /// <seealso cref="IExprC" />
+    public class EqC : IExprC
     {
         /// <summary>
-        /// The value of the expression.
+        /// The argument of the expression.
         /// </summary>
-        public readonly int Value;
+        public readonly IExprC Argument1, Argument2;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SInt"/> class.
+        /// Initializes a new instance of the <see cref="EqC"/> class.
         /// </summary>
-        /// <param name="value">The value of the expression.</param>
-        public SInt(int value)
+        /// <param name="arg1">The left argument of this expression.</param>
+        /// <param name="arg2">The right argument of this expression.</param>
+        public EqC(IExprC arg1, IExprC arg2)
         {
-            Value = value;
+            Argument1 = arg1;
+            Argument2 = arg2;
         }
 
         /// <summary>
-        /// Parses this s-expression.
+        /// Interprets this core expression.
         /// </summary>
         /// <returns>
-        /// Abstract syntax-tree structure.
+        /// Resulting value.
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IExprExt Parse()
+        public IValue Interpret()
         {
-            return new IntExt(Value);
+            IValue v1 = Argument1.Interpret();
+            IValue v2 = Argument2.Interpret();
+
+            return new BoolV(v1.Equals(v2));
         }
 
         /// <summary>
@@ -41,7 +44,7 @@ namespace Splaak.Core.Reader.Expressions
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString() => $"SInt({Value})";
+        public override string ToString() => $"EqC({Argument1}, {Argument2})";
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
@@ -52,9 +55,9 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SInt that)
+            if (obj is EqC that)
             {
-                return that.Value == Value;
+                return that.Argument1.Equals(Argument1) && that.Argument2.Equals(Argument2);
             }
             return false;
         }
@@ -67,7 +70,7 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override int GetHashCode()
         {
-            return GetType().GetHashCode() * Value.GetHashCode();
+            return GetType().GetHashCode() * Argument1.GetHashCode() * Argument2.GetHashCode() ^ 2;
         }
     }
 }

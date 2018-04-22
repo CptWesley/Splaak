@@ -1,38 +1,41 @@
-﻿using Splaak.Core.AbstractSyntax;
-using Splaak.Core.AbstractSyntax.Types;
+﻿using Splaak.Core.Values;
 
-namespace Splaak.Core.Reader.Expressions
+namespace Splaak.Core.CoreSyntax.UnOps
 {
     /// <summary>
-    /// Represents an integer.
+    /// Represents a getter for the first element of a pair.
     /// </summary>
-    /// <seealso cref="ISExpression" />
-    public class SInt : ISExpression
+    /// <seealso cref="IExprC" />
+    public class SecondC : IExprC
     {
         /// <summary>
-        /// The value of the expression.
+        /// The pair to extract the first element from.
         /// </summary>
-        public readonly int Value;
+        public readonly IExprC Argument;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SInt"/> class.
+        /// Initializes a new instance of the <see cref="SecondC"/> class.
         /// </summary>
-        /// <param name="value">The value of the expression.</param>
-        public SInt(int value)
+        /// <param name="arg">The pair to extract the first element from.</param>
+        public SecondC(IExprC arg)
         {
-            Value = value;
+            Argument = arg;
         }
 
         /// <summary>
-        /// Parses this s-expression.
+        /// Interprets this core expression.
         /// </summary>
         /// <returns>
-        /// Abstract syntax-tree structure.
+        /// Resulting value.
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IExprExt Parse()
+        public IValue Interpret()
         {
-            return new IntExt(Value);
+            IValue v = Argument.Interpret();
+            if (v is PairV pair)
+            {
+                return pair.Right;
+            }
+            throw new InterpretException();
         }
 
         /// <summary>
@@ -41,7 +44,7 @@ namespace Splaak.Core.Reader.Expressions
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString() => $"SInt({Value})";
+        public override string ToString() => $"SecondC({Argument})";
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
@@ -52,9 +55,9 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SInt that)
+            if (obj is SecondC that)
             {
-                return that.Value == Value;
+                return that.Argument.Equals(Argument);
             }
             return false;
         }
@@ -67,7 +70,7 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override int GetHashCode()
         {
-            return GetType().GetHashCode() * Value.GetHashCode();
+            return GetType().GetHashCode() * Argument.GetHashCode();
         }
     }
 }

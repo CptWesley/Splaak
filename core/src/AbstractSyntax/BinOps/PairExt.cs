@@ -1,38 +1,39 @@
-﻿using Splaak.Core.AbstractSyntax;
-using Splaak.Core.AbstractSyntax.Types;
+﻿using Splaak.Core.CoreSyntax;
+using Splaak.Core.CoreSyntax.BinOps;
 
-namespace Splaak.Core.Reader.Expressions
+namespace Splaak.Core.AbstractSyntax.BinOps
 {
     /// <summary>
-    /// Represents an integer.
+    /// Represents a pair.
     /// </summary>
-    /// <seealso cref="ISExpression" />
-    public class SInt : ISExpression
+    /// <seealso cref="IExprExt" />
+    public class PairExt : IExprExt
     {
         /// <summary>
-        /// The value of the expression.
+        /// The elements of the pair.
         /// </summary>
-        public readonly int Value;
+        public readonly IExprExt Left, Right;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SInt"/> class.
+        /// Initializes a new instance of the <see cref="PairExt"/> class.
         /// </summary>
-        /// <param name="value">The value of the expression.</param>
-        public SInt(int value)
+        /// <param name="left">The left element of the pair.</param>
+        /// <param name="right">The right element of the pair.</param>
+        public PairExt(IExprExt left, IExprExt right)
         {
-            Value = value;
+            Left = left;
+            Right = right;
         }
 
         /// <summary>
-        /// Parses this s-expression.
+        /// Desugars this abstract expression.
         /// </summary>
         /// <returns>
-        /// Abstract syntax-tree structure.
+        /// Core expression variant.
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IExprExt Parse()
+        public IExprC Desugar()
         {
-            return new IntExt(Value);
+            return new PairC(Left.Desugar(), Right.Desugar());
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace Splaak.Core.Reader.Expressions
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString() => $"SInt({Value})";
+        public override string ToString() => $"PairExt({Left}, {Right})";
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
@@ -52,9 +53,9 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SInt that)
+            if (obj is PairExt that)
             {
-                return that.Value == Value;
+                return that.Left.Equals(Left) && that.Right.Equals(Right);
             }
             return false;
         }
@@ -67,7 +68,7 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override int GetHashCode()
         {
-            return GetType().GetHashCode() * Value.GetHashCode();
+            return GetType().GetHashCode() * Left.GetHashCode() * Right.GetHashCode() ^ 2;
         }
     }
 }

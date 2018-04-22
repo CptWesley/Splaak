@@ -1,5 +1,6 @@
 ﻿using System;
 using Splaak.Core.AbstractSyntax;
+using Splaak.Core.AbstractSyntax.Types;
 
 namespace Splaak.Core.Reader.Expressions
 {

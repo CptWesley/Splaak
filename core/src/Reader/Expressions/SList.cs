@@ -1,5 +1,8 @@
 ﻿using System.Linq;
 using Splaak.Core.AbstractSyntax;
+using Splaak.Core.AbstractSyntax.BinOps;
+using Splaak.Core.AbstractSyntax.Misc;
+using Splaak.Core.AbstractSyntax.UnOps;
 
 namespace Splaak.Core.Reader.Expressions
 {
@@ -93,7 +96,7 @@ namespace Splaak.Core.Reader.Expressions
         /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
         /// <returns>
-        /// A <see cref="string /> that represents this instance.
+        /// A <see cref="string" /> that represents this instance.
         /// </returns>
         public override string ToString() => $"SList({string.Join(", ", Expressions.AsEnumerable())})";
 

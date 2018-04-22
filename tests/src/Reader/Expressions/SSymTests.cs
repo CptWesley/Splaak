@@ -1,4 +1,5 @@
 ﻿using Splaak.Core.AbstractSyntax;
+using Splaak.Core.AbstractSyntax.Types;
 using Splaak.Core.Reader.Expressions;
 using Xunit;
 

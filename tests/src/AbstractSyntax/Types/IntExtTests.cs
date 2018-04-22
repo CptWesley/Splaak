@@ -1,13 +1,13 @@
 ﻿using Splaak.Core.AbstractSyntax.Types;
-using Splaak.Core.Reader.Expressions;
+using Splaak.Core.CoreSyntax.Types;
 using Xunit;
 
-namespace Splaak.Tests.Reader.Expressions
+namespace Splaak.Tests.AbstractSyntax.Types
 {
-    public class SFloatTests
+    public class IntExtTests
     {
-        private const float Value = 42;
-        private SFloat _obj = new SFloat(Value);
+        private const int Value = 128;
+        private IntExt _obj = new IntExt(Value);
 
         [Fact]
         public void ConstructorTest()
@@ -18,7 +18,7 @@ namespace Splaak.Tests.Reader.Expressions
         [Fact]
         public void EqualsEqualTest()
         {
-            Assert.True(_obj.Equals(new SFloat(Value)));
+            Assert.True(_obj.Equals(new IntExt(Value)));
         }
 
         [Fact]
@@ -30,31 +30,31 @@ namespace Splaak.Tests.Reader.Expressions
         [Fact]
         public void EqualsNotEqualValueTest()
         {
-            Assert.False(_obj.Equals(new SFloat(Value - 1)));
+            Assert.False(_obj.Equals(new IntExt(Value + 1)));
         }
 
         [Fact]
         public void EqualsNotEqualTypeTest()
         {
-            Assert.False(_obj.Equals(new SSym("")));
+            Assert.False(_obj.Equals(new BoolExt(false)));
         }
 
         [Fact]
         public void HashCodeEqualTest()
         {
-            Assert.Equal(_obj.GetHashCode(), new SFloat(Value).GetHashCode());
+            Assert.Equal(_obj.GetHashCode(), new IntExt(Value).GetHashCode());
         }
 
         [Fact]
         public void ToStringTest()
         {
-            Assert.Equal(_obj.ToString(), "SFloat(" + Value + ")");
+            Assert.Equal(_obj.ToString(), "IntExt(" + Value + ")");
         }
 
         [Fact]
-        public void ParseTest()
+        public void DesugarTest()
         {
-            Assert.Equal(_obj.Parse(), new FloatExt(Value));
+            Assert.Equal(_obj.Desugar(), new IntC(Value));
         }
     }
 }

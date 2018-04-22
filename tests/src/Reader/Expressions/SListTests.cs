@@ -8,7 +8,7 @@ namespace Splaak.Tests.Reader.Expressions
     {
         private static SSym _1 = new SSym("bla");
         private static SInt _2 = new SInt(43);
-        private SList _obj = new SList(new ISExpression[] { _1, _2 });
+        private SList _obj = new SList(_1, _2);
 
         [Fact]
         public void ConstructorTest()
@@ -21,14 +21,14 @@ namespace Splaak.Tests.Reader.Expressions
         [Fact]
         public void EqualsEqualTest()
         {
-            Assert.True(_obj.Equals(new SList(new ISExpression[] { _1, _2 })));
+            Assert.True(_obj.Equals(new SList(_1, _2)));
         }
 
         [Fact]
         public void EqualsNullListTest()
         {
-            Assert.True(new SList(new ISExpression[] { null, null })
-                .Equals(new SList(new ISExpression[] { null, null })));
+            Assert.True(new SList(null, null)
+                .Equals(new SList(null, null)));
         }
 
         [Fact]
@@ -40,13 +40,13 @@ namespace Splaak.Tests.Reader.Expressions
         [Fact]
         public void EqualsNotEqualLengthTest()
         {
-            Assert.False(_obj.Equals(new SList(new ISExpression[] { _1 })));
+            Assert.False(_obj.Equals(new SList(_1)));
         }
 
         [Fact]
         public void EqualsNotEqualElementsTest()
         {
-            Assert.False(_obj.Equals(new SList(new ISExpression[] { _1, null })));
+            Assert.False(_obj.Equals(new SList(_1, null)));
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace Splaak.Tests.Reader.Expressions
         [Fact]
         public void HashCodeEqualTest()
         {
-            Assert.Equal(_obj.GetHashCode(), new SList(new ISExpression[] { _1, _2 }).GetHashCode());
+            Assert.Equal(_obj.GetHashCode(), new SList(_1, _2).GetHashCode());
         }
 
         [Fact]

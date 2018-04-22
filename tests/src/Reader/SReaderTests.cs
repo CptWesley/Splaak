@@ -33,19 +33,19 @@ namespace Splaak.Tests.Reader
         [Fact]
         public void ListSingleTest()
         {
-            Assert.Equal(SReader.Read("(5)"), new SList(new ISExpression[] { new SInt(5) }));
+            Assert.Equal(SReader.Read("(5)"), new SList(new SInt(5)));
         }
 
         [Fact]
         public void ListMultipleTest()
         {
-            Assert.Equal(SReader.Read("(5 true)"), new SList(new ISExpression[] { new SInt(5), new SSym("true") }));
+            Assert.Equal(SReader.Read("(5 true)"), new SList(new SInt(5), new SSym("true")));
         }
 
         [Fact]
         public void ListMultipleExtraSpacesTest()
         {
-            Assert.Equal(SReader.Read("(   5    true  )"), new SList(new ISExpression[] { new SInt(5), new SSym("true") }));
+            Assert.Equal(SReader.Read("(   5    true  )"), new SList(new SInt(5), new SSym("true")));
         }
 
         /*

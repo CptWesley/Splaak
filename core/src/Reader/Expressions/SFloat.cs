@@ -52,9 +52,9 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SFloat)
+            if (obj is SFloat that)
             {
-                return Math.Abs(((SFloat) obj).Value - Value) < 0.001;
+                return Math.Abs(that.Value - Value) < 0.001;
             }
             return false;
         }

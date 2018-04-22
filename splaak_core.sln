@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "splaak_core", "core\splaak_core.csproj", "{296CBD81-5168-4B12-96FB-548F4F626E38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "splaak_tests", "tests\splaak_tests.csproj", "{B7874D98-A967-4F00-B496-E86A00E88CEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "splaak_repl", "repl\splaak_repl.csproj", "{204A7C7F-209A-408E-B6D0-118F4B28F66C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{296CBD81-5168-4B12-96FB-548F4F626E38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{296CBD81-5168-4B12-96FB-548F4F626E38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{296CBD81-5168-4B12-96FB-548F4F626E38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{296CBD81-5168-4B12-96FB-548F4F626E38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7874D98-A967-4F00-B496-E86A00E88CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7874D98-A967-4F00-B496-E86A00E88CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7874D98-A967-4F00-B496-E86A00E88CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7874D98-A967-4F00-B496-E86A00E88CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{204A7C7F-209A-408E-B6D0-118F4B28F66C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{204A7C7F-209A-408E-B6D0-118F4B28F66C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{204A7C7F-209A-408E-B6D0-118F4B28F66C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{204A7C7F-209A-408E-B6D0-118F4B28F66C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D547629B-22C4-48D2-BCB6-77635154979F}
+	EndGlobalSection
+EndGlobal

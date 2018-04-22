@@ -6,7 +6,7 @@ namespace Splaak.Tests.Reader.Expressions
 {
     public class SFloatTests
     {
-        private const int Value = 42;
+        private const float Value = 42;
         private SFloat _obj = new SFloat(Value);
 
         [Fact]

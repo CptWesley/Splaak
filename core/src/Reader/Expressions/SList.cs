@@ -58,6 +58,16 @@ namespace Splaak.Core.Reader.Expressions
                         return new AndExt(Expressions[1].Parse(), Expressions[2].Parse());
                     case "or":
                         return new OrExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    case "=":
+                        return new EqExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    case "<":
+                        return new LtExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    case "<=":
+                        return new LeqExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    case ">":
+                        return new GtExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    case ">=":
+                        return new GeqExt(Expressions[1].Parse(), Expressions[2].Parse());
                 }
             }
             else if (Expressions.Length == 4 && (s = (SSym) Expressions[0]) != null && s.Value == "if")

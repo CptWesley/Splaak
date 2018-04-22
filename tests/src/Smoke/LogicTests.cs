@@ -95,5 +95,119 @@ namespace Splaak.Tests.Smoke
         {
             Assert.Equal(SInterpreter.Interpret("(not true)"), new BoolV(false));
         }
+
+        [Fact]
+        public void EqualTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(= 3 3)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void EqualNestedTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(= (+ 2 1) 3)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void EqualFalseTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(= 4 3)"), new BoolV(false));
+        }
+
+        [Fact]
+        public void LesserThanTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(< 2 3)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void LesserThanNestedTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(< (+ 1 1) 3)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void LesserThanFalseTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(< 4 2)"), new BoolV(false));
+        }
+
+        [Fact]
+        public void LesserThanEqualTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(< 2 2)"), new BoolV(false));
+        }
+
+        [Fact]
+        public void LesserThanOrEqualTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(<= 2 3)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void LesserThanOrEqualNestedTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(<= (+ 1 1) 3)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void LesserThanOrEqualFalseTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(<= 4 2)"), new BoolV(false));
+        }
+
+        [Fact]
+        public void LesserThanOrEqualEqualTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(<= 2 2)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void GreaterThanTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(> 3 2)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void GreaterThanNestedTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(> 3 (+ 1 1))"), new BoolV(true));
+        }
+
+        [Fact]
+        public void GreaterThanFalseTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(> 2 4)"), new BoolV(false));
+        }
+
+        [Fact]
+        public void GreaterThanEqualTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(> 2 2)"), new BoolV(false));
+        }
+
+        [Fact]
+        public void GreaterThanOrEqualTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(>= 3 2)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void GreaterThanOrEqualNestedTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(>= 3 (+ 1 1))"), new BoolV(true));
+        }
+
+        [Fact]
+        public void GreaterThanOrEqualFalseTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(>= 2 4)"), new BoolV(false));
+        }
+
+        [Fact]
+        public void GreaterThanOrEqualEqualTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(>= 2 2)"), new BoolV(true));
+        }
     }
 }

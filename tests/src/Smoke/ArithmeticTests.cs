@@ -149,5 +149,17 @@ namespace Splaak.Tests.Smoke
         {
             Assert.Equal(SInterpreter.Interpret("(/ 20 (* 5 2))"), new IntV(2));
         }
+
+        [Fact]
+        public void UnMinIntegerTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(- (+ 3 0))"), new IntV(-3));
+        }
+
+        [Fact]
+        public void UnMinFloatTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(- (+ 3 1.0))"), new FloatV(-4));
+        }
     }
 }

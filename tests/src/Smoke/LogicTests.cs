@@ -83,5 +83,17 @@ namespace Splaak.Tests.Smoke
         {
             Assert.Equal(SInterpreter.Interpret("(or false false)"), new BoolV(false));
         }
+
+        [Fact]
+        public void NotFalseTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(not false)"), new BoolV(true));
+        }
+
+        [Fact]
+        public void NotTrueTest()
+        {
+            Assert.Equal(SInterpreter.Interpret("(not true)"), new BoolV(false));
+        }
     }
 }

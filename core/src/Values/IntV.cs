@@ -26,7 +26,7 @@
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => string.Format("IntV({0})", Value);
+        public override string ToString() => $"IntV({Value})";
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.

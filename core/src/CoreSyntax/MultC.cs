@@ -49,7 +49,7 @@ namespace Splaak.Core.CoreSyntax
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => string.Format("MultC({0}, {1})", Argument1, Argument2);
+        public override string ToString() => $"MultC({Argument1}, {Argument2})";
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.

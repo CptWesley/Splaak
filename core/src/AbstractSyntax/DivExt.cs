@@ -41,7 +41,7 @@ namespace Splaak.Core.AbstractSyntax
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => string.Format("DivExt({0}, {1})", Argument1.ToString(), Argument2.ToString());
+        public override string ToString() => $"DivExt({Argument1}, {Argument2})";
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.

@@ -28,7 +28,7 @@ namespace Splaak.Core.Values
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => string.Format("FloatV({0})", Value);
+        public override string ToString() => $"FloatV({Value})";
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.

@@ -39,7 +39,7 @@ namespace Splaak.Core.CoreSyntax
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => string.Format("IntC({0})", Value);
+        public override string ToString() => $"IntC({Value})";
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.

@@ -47,7 +47,7 @@ namespace Splaak.Core.Reader.Expressions
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => string.Format("SSym({0})", Value);
+        public override string ToString() => $"SSym({Value})";
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.

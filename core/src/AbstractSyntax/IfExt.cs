@@ -43,10 +43,7 @@ namespace Splaak.Core.AbstractSyntax
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => string.Format("IfExt({0}, {1}, {2})",
-            Condition.ToString(),
-            Then.ToString(),
-            Else.ToString());
+        public override string ToString() => $"IfExt({Condition}, {Then}, {Else})";
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.

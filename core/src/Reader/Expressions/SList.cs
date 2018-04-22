@@ -103,7 +103,10 @@ namespace Splaak.Core.Reader.Expressions
                 }
                 for (int i = 0; i < Expressions.Length; ++i)
                 {
-                    if (!that.Expressions[i].Equals(Expressions[i]))
+                    ISExpression here = Expressions[i];
+                    ISExpression there = that.Expressions[i];
+                    if (here == null && there == null) continue;
+                    if (here == null || !here.Equals(there))
                     {
                         return false;
                     }

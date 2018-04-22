@@ -9,7 +9,7 @@ namespace Splaak.Tests.AbstractSyntax
         private static IExprExt _1 = new IntExt(1);
         private static IExprExt _2 = new IntExt(2);
         private static IExprExt _3 = new IntExt(3);
-        private TupleExt _obj = new TupleExt(new[] { _1, _2, _3 });
+        private TupleExt _obj = new TupleExt(_1, _2, _3);
 
         [Fact]
         public void ConstructorTest()
@@ -22,7 +22,7 @@ namespace Splaak.Tests.AbstractSyntax
         [Fact]
         public void EqualsEqualTest()
         {
-            Assert.True(_obj.Equals(new TupleExt(new[] { _1, _2, _3 })));
+            Assert.True(_obj.Equals(new TupleExt(_1, _2, _3)));
         }
 
         [Fact]
@@ -34,13 +34,13 @@ namespace Splaak.Tests.AbstractSyntax
         [Fact]
         public void EqualsNotEqualLengthTest()
         {
-            Assert.False(_obj.Equals(new TupleExt(new[] { _1, _2 })));
+            Assert.False(_obj.Equals(new TupleExt(_1, _2)));
         }
 
         [Fact]
         public void EqualsNotEqualValueTest()
         {
-            Assert.False(_obj.Equals(new TupleExt(new[] { _1, _2, _2 })));
+            Assert.False(_obj.Equals(new TupleExt(_1, _2, _2)));
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace Splaak.Tests.AbstractSyntax
         [Fact]
         public void HashCodeEqualTest()
         {
-            Assert.Equal(_obj.GetHashCode(), new TupleExt(new[] { _1, _2, _3 }).GetHashCode());
+            Assert.Equal(_obj.GetHashCode(), new TupleExt(_1, _2, _3).GetHashCode());
         }
 
         [Fact]

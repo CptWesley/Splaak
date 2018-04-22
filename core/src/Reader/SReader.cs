@@ -14,7 +14,6 @@ namespace Splaak.Core.Reader
     {
         private const char ListStart = '(';
         private const char ListEnd = ')';
-        private const char ListSeparator = ' ';
 
         private static readonly Func<char, bool> CharacterSkipPredicate = (char c) => char.IsWhiteSpace(c) ||
                                                                                       char.IsControl(c);

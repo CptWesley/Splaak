@@ -18,8 +18,4 @@
     <ProjectReference Include="..\core\splaak_core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="src\AbstractSyntax\" />
-  </ItemGroup>
-
 </Project>

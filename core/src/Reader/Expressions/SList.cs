@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Splaak.Core.AbstractSyntax;
 
 namespace Splaak.Core.Reader.Expressions
@@ -8,7 +6,7 @@ namespace Splaak.Core.Reader.Expressions
     /// <summary>
     /// Represents a list of S-expressions.
     /// </summary>
-    /// <seealso cref="Splaak.Core.Reader.Expressions.ISExpression" />
+    /// <seealso cref="ISExpression" />
     public class SList : ISExpression
     {
         /// <summary>
@@ -92,26 +90,19 @@ namespace Splaak.Core.Reader.Expressions
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
+        /// A <see cref="string /> that represents this instance.
         /// </returns>
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("SList(");
-            sb.Append(string.Join(", ", Expressions.AsEnumerable()));
-            sb.Append(")");
-            return sb.ToString();
-        }
+        public override string ToString() => $"SList({string.Join(", ", Expressions.AsEnumerable())})";
 
         /// <summary>
-        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// Determines whether the specified <see cref="object" />, is equal to this instance.
         /// </summary>
-        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {

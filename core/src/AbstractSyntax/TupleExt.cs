@@ -49,14 +49,7 @@ namespace Splaak.Core.AbstractSyntax
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("TupleExt(");
-            sb.Append(string.Join(", ", Elements.AsEnumerable()));
-            sb.Append(")");
-            return sb.ToString();
-        }
+        public override string ToString() => $"TupleExt({string.Join(", ", Elements.AsEnumerable())})";
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.

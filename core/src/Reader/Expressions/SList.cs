@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using Splaak.Core.AbstractSyntax;
 
 namespace Splaak.Core.Reader.Expressions
@@ -40,6 +41,10 @@ namespace Splaak.Core.Reader.Expressions
                         return new NotExt(Expressions[1].Parse());
                     case "-":
                         return new UnMinExt(Expressions[1].Parse());
+                    case "first":
+                        return new FirstExt(Expressions[1].Parse());
+                    case "second":
+                        return new SecondExt(Expressions[1].Parse());
                 }
             }
             else if (Expressions.Length == 3 && Expressions[0] is SSym)
@@ -68,11 +73,22 @@ namespace Splaak.Core.Reader.Expressions
                         return new GtExt(Expressions[1].Parse(), Expressions[2].Parse());
                     case ">=":
                         return new GeqExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    case "pair":
+                        return new PairExt(Expressions[1].Parse(), Expressions[2].Parse());
                 }
             }
             else if (Expressions.Length == 4 && (s = (SSym) Expressions[0]) != null && s.Value == "if")
             {
                 return new IfExt(Expressions[1].Parse(), Expressions[2].Parse(), Expressions[3].Parse());
+            }
+            else if (Expressions.Length >= 3 && (s = (SSym) Expressions[0]) != null && s.Value == "tuple")
+            {
+                List<IExprExt> elements = new List<IExprExt>();
+                for (int i = 1; i < Expressions.Length; ++i)
+                {
+                    elements.Add(Expressions[i].Parse());
+                }
+                return new TupleExt(elements.ToArray());
             }
             throw new ParseException();
         }

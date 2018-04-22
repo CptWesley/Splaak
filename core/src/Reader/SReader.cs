@@ -7,8 +7,6 @@ using Splaak.Core.Values;
 
 namespace Splaak.Core.Reader
 {
-    //TODO: FIX THIS MESS.
-
     /// <summary>
     /// Class used for reading Splaak code.
     /// </summary>

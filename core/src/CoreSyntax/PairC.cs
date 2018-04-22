@@ -52,9 +52,8 @@ namespace Splaak.Core.CoreSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is PairC)
+            if (obj is PairC that)
             {
-                PairC that = (PairC) obj;
                 return that.Left.Equals(Left) && that.Right.Equals(Right);
             }
             return false;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Splaak.Core.AbstractSyntax;
 
@@ -32,63 +33,60 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public IExprExt Parse()
         {
-            SSym s;
-            if (Expressions.Length == 2 && Expressions[0] is SSym)
+            if (Expressions[0] is SSym op)
             {
-                switch (((SSym) Expressions[0]).Value)
+                if (Expressions.Length == 2)
                 {
-                    case "not":
-                        return new NotExt(Expressions[1].Parse());
-                    case "-":
-                        return new UnMinExt(Expressions[1].Parse());
-                    case "first":
-                        return new FirstExt(Expressions[1].Parse());
-                    case "second":
-                        return new SecondExt(Expressions[1].Parse());
+                    switch (op.Value)
+                    {
+                        case "not":
+                            return new NotExt(Expressions[1].Parse());
+                        case "-":
+                            return new UnMinExt(Expressions[1].Parse());
+                        case "first":
+                            return new FirstExt(Expressions[1].Parse());
+                        case "second":
+                            return new SecondExt(Expressions[1].Parse());
+                    }
                 }
-            }
-            else if (Expressions.Length == 3 && Expressions[0] is SSym)
-            {
-                switch (((SSym)Expressions[0]).Value)
+                else if (Expressions.Length == 3)
                 {
-                    case "+":
-                        return new PlusExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "-":
-                        return new BinMinExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "*":
-                        return new MultExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "/":
-                        return new DivExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "and":
-                        return new AndExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "or":
-                        return new OrExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "=":
-                        return new EqExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "<":
-                        return new LtExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "<=":
-                        return new LeqExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case ">":
-                        return new GtExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case ">=":
-                        return new GeqExt(Expressions[1].Parse(), Expressions[2].Parse());
-                    case "pair":
-                        return new PairExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    switch (op.Value)
+                    {
+                        case "+":
+                            return new PlusExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "-":
+                            return new BinMinExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "*":
+                            return new MultExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "/":
+                            return new DivExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "and":
+                            return new AndExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "or":
+                            return new OrExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "=":
+                            return new EqExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "<":
+                            return new LtExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "<=":
+                            return new LeqExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case ">":
+                            return new GtExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case ">=":
+                            return new GeqExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "pair":
+                            return new PairExt(Expressions[1].Parse(), Expressions[2].Parse());
+                    }
                 }
-            }
-            else if (Expressions.Length == 4 && (s = (SSym) Expressions[0]) != null && s.Value == "if")
-            {
-                return new IfExt(Expressions[1].Parse(), Expressions[2].Parse(), Expressions[3].Parse());
-            }
-            else if (Expressions.Length >= 3 && (s = (SSym) Expressions[0]) != null && s.Value == "tuple")
-            {
-                List<IExprExt> elements = new List<IExprExt>();
-                for (int i = 1; i < Expressions.Length; ++i)
+                else if (Expressions.Length == 4 && op.Value == "if")
                 {
-                    elements.Add(Expressions[i].Parse());
+                    return new IfExt(Expressions[1].Parse(), Expressions[2].Parse(), Expressions[3].Parse());
                 }
-                return new TupleExt(elements.ToArray());
+                else if (Expressions.Length >= 3 && op.Value == "tuple")
+                {
+                    return new TupleExt(Expressions.Skip(1).Select(e => e.Parse()).ToArray());
+                }
             }
             throw new ParseException();
         }
@@ -103,14 +101,7 @@ namespace Splaak.Core.Reader.Expressions
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("SList(");
-            for (int i = 0; i < Expressions.Length; ++i)
-            {
-                sb.Append(Expressions[i]);
-                if (i != Expressions.Length - 1)
-                {
-                    sb.Append(", ");
-                }
-            }
+            sb.Append(string.Join(", ", Expressions.AsEnumerable()));
             sb.Append(")");
             return sb.ToString();
         }
@@ -124,24 +115,9 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SList)
+            if (obj is SList that)
             {
-                SList that = (SList) obj;
-                if (that.Expressions.Length != Expressions.Length)
-                {
-                    return false;
-                }
-                for (int i = 0; i < Expressions.Length; ++i)
-                {
-                    ISExpression here = Expressions[i];
-                    ISExpression there = that.Expressions[i];
-                    if (here == null && there == null) continue;
-                    if (here == null || !here.Equals(there))
-                    {
-                        return false;
-                    }
-                }
-                return true;
+                return Expressions.SequenceEqual(that.Expressions);
             }
             return false;
         }

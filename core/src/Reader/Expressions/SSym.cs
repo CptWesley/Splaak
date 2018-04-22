@@ -58,9 +58,9 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SSym)
+            if (obj is SSym that)
             {
-                return ((SSym) obj).Value == Value;
+                return that.Value == Value;
             }
             return false;
         }

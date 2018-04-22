@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 using Splaak.Core.CoreSyntax;
 
 namespace Splaak.Core.AbstractSyntax
@@ -52,14 +53,7 @@ namespace Splaak.Core.AbstractSyntax
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("TupleExt(");
-            for (int i = 0; i < Elements.Length; ++i)
-            {
-                sb.Append(Elements[i]);
-                if (i != Elements.Length - 1)
-                {
-                    sb.Append(", ");
-                }
-            }
+            sb.Append(string.Join(", ", Elements.AsEnumerable()));
             sb.Append(")");
             return sb.ToString();
         }
@@ -73,24 +67,9 @@ namespace Splaak.Core.AbstractSyntax
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is TupleExt)
+            if (obj is TupleExt that)
             {
-                TupleExt that = (TupleExt) obj;
-                if (that.Elements.Length != Elements.Length)
-                {
-                    return false;
-                }
-                for (int i = 0; i < Elements.Length; ++i)
-                {
-                    IExprExt here = Elements[i];
-                    IExprExt there = that.Elements[i];
-                    if (here == null && there == null) continue;
-                    if (here == null || !here.Equals(there))
-                    {
-                        return false;
-                    }
-                }
-                return true;
+                return Elements.SequenceEqual(that.Elements);
             }
             return false;
         }

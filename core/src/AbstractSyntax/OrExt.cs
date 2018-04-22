@@ -14,7 +14,7 @@ namespace Splaak.Core.AbstractSyntax
         public readonly IExprExt Argument1, Argument2;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Splaak.Core.AbstractSyntax.PlusExt"/> class.
+        /// Initializes a new instance of the <see cref="OrExt"/> class.
         /// </summary>
         /// <param name="arg1">The left argument of the OR.</param>
         /// <param name="arg2">The right argument of the OR.</param>

@@ -25,6 +25,13 @@ namespace Splaak.Tests.Reader.Expressions
         }
 
         [Fact]
+        public void EqualsNullListTest()
+        {
+            Assert.True(new SList(new ISExpression[] { null, null })
+                .Equals(new SList(new ISExpression[] { null, null })));
+        }
+
+        [Fact]
         public void EqualsNullTest()
         {
             Assert.False(_obj.Equals(null));

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Splaak.Core.AbstractSyntax;
 using Splaak.Core.AbstractSyntax.BinOps;
 using Splaak.Core.AbstractSyntax.Misc;
@@ -78,6 +79,18 @@ namespace Splaak.Core.Reader.Expressions
                             return new GeqExt(Expressions[1].Parse(), Expressions[2].Parse());
                         case "pair":
                             return new PairExt(Expressions[1].Parse(), Expressions[2].Parse());
+                        case "let":
+                            if (Expressions[1] is SList binds)
+                            {
+                                Tuple<string, IExprExt>[] abstractBinds
+                                    = new Tuple<string, IExprExt>[binds.Expressions.Length];
+                                for (int i = 0; i < abstractBinds.Length; ++i)
+                                {
+                                    abstractBinds[i] = ParseLetBinding(binds.Expressions[i]);
+                                }
+                                return new LetExt(abstractBinds, Expressions[2].Parse());
+                            }
+                            break;
                     }
                 }
                 else if (Expressions.Length == 4 && op.Value == "if")
@@ -90,6 +103,27 @@ namespace Splaak.Core.Reader.Expressions
                 }
             }
             throw new ParseException();
+        }
+
+        /// <summary>
+        /// Parses a let binding.
+        /// </summary>
+        /// <param name="sexpr">A let bind.</param>
+        /// <returns></returns>
+        /// <exception cref="ParseException"></exception>
+        private static Tuple<string, IExprExt> ParseLetBinding(ISExpression sexpr)
+        {
+            SList bind = sexpr as SList;
+            if (bind == null)
+                throw new ParseException($"Illegal bind type of '{sexpr}'.");
+            if (bind.Expressions.Length != 2)
+                throw new ParseException($"Let-bind '{bind}' is not of length 2.");
+            SSym name = bind.Expressions[0] as SSym;
+            if (name == null)
+                throw new ParseException($"Illegal variable name type of '{bind.Expressions[0]}'.");
+            if (ParseException.ReservedSymbols.Contains(name.Value))
+                throw new ParseException($"Illegal rebind of reserved symbol '{name.Value}'.");
+            return new Tuple<string, IExprExt>(name.Value, bind.Expressions[1].Parse());
         }
 
         /// <summary>

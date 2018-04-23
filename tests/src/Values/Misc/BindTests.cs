@@ -1,7 +1,9 @@
 ﻿using Splaak.Core.Values;
+using Splaak.Core.Values.Misc;
+using Splaak.Core.Values.Types;
 using Xunit;
 
-namespace Splaak.Tests.Values
+namespace Splaak.Tests.Values.Misc
 {
     public class BindTests
     {

@@ -1,21 +1,23 @@
-﻿namespace Splaak.Core.Values
+﻿using System;
+
+namespace Splaak.Core.Values.Types
 {
     /// <summary>
-    /// Represents a boolean.
+    /// Represents a float.
     /// </summary>
     /// <seealso cref="IValue" />
-    public class BoolV : IValue
+    public class FloatV : IValue
     {
         /// <summary>
-        /// The boolean value.
+        /// The float value.
         /// </summary>
-        public readonly bool Value;
+        public readonly float Value;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IntV"/> class.
+        /// Initializes a new instance of the <see cref="FloatV"/> class.
         /// </summary>
-        /// <param name="value">The boolean value.</param>
-        public BoolV(bool value)
+        /// <param name="value">The float value.</param>
+        public FloatV(float value)
         {
             Value = value;
         }
@@ -26,7 +28,7 @@
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString() => $"BoolV({Value})";
+        public override string ToString() => $"FloatV({Value})";
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
@@ -37,9 +39,9 @@
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is BoolV that)
+            if (obj is FloatV that)
             {
-                return that.Value == Value;
+                return Math.Abs(that.Value - Value) < 0.001;
             }
             return false;
         }

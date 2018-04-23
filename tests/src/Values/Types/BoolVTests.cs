@@ -1,7 +1,7 @@
-﻿using Splaak.Core.Values;
+﻿using Splaak.Core.Values.Types;
 using Xunit;
 
-namespace Splaak.Tests.Values
+namespace Splaak.Tests.Values.Types
 {
     public class BoolVTests
     {

@@ -1,5 +1,5 @@
 ﻿using Splaak.Core;
-using Splaak.Core.Values;
+using Splaak.Core.Values.Types;
 using Xunit;
 
 namespace Splaak.Tests.Smoke

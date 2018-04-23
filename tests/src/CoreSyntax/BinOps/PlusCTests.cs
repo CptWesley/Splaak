@@ -1,6 +1,7 @@
 ﻿using Splaak.Core.CoreSyntax.BinOps;
 using Splaak.Core.CoreSyntax.Types;
 using Splaak.Core.Values;
+using Splaak.Core.Values.Types;
 using Xunit;
 
 namespace Splaak.Tests.CoreSyntax.BinOps

@@ -1,12 +1,12 @@
-﻿using Splaak.Core.Values;
+﻿using Splaak.Core.Values.Types;
 using Xunit;
 
-namespace Splaak.Tests.Values
+namespace Splaak.Tests.Values.Types
 {
-    public class FloatVTests
+    public class IntVTests
     {
-        private const float Value = 1337;
-        private FloatV _obj = new FloatV(Value);
+        private const int Value = 1337;
+        private IntV _obj = new IntV(Value);
 
         [Fact]
         public void ConstructorTest()
@@ -17,7 +17,7 @@ namespace Splaak.Tests.Values
         [Fact]
         public void EqualsEqualTest()
         {
-            Assert.True(_obj.Equals(new FloatV(Value)));
+            Assert.True(_obj.Equals(new IntV(Value)));
         }
 
         [Fact]
@@ -29,25 +29,25 @@ namespace Splaak.Tests.Values
         [Fact]
         public void EqualsNotEqualValueTest()
         {
-            Assert.False(_obj.Equals(new FloatV(Value - 1)));
+            Assert.False(_obj.Equals(new IntV(Value - 1)));
         }
 
         [Fact]
         public void EqualsNotEqualTypeTest()
         {
-            Assert.False(_obj.Equals(new IntV(0)));
+            Assert.False(_obj.Equals(new FloatV(0)));
         }
 
         [Fact]
         public void HashCodeEqualTest()
         {
-            Assert.Equal(_obj.GetHashCode(), new FloatV(Value).GetHashCode());
+            Assert.Equal(_obj.GetHashCode(), new IntV(Value).GetHashCode());
         }
 
         [Fact]
         public void ToStringTest()
         {
-            Assert.Equal(_obj.ToString(), "FloatV(" + Value + ")");
+            Assert.Equal(_obj.ToString(), "IntV(" + Value + ")");
         }
     }
 }

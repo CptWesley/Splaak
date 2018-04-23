@@ -1,4 +1,6 @@
 ﻿using Splaak.Core.Values;
+using Splaak.Core.Values.Misc;
+using Splaak.Core.Values.Types;
 
 namespace Splaak.Core.CoreSyntax.Types
 {

@@ -1,23 +1,26 @@
 ﻿using Splaak.Core.Values;
+using Splaak.Core.Values.Types;
 using Xunit;
 
-namespace Splaak.Tests.Values
+namespace Splaak.Tests.Values.Types
 {
-    public class IntVTests
+    public class PairVTests
     {
-        private const int Value = 1337;
-        private IntV _obj = new IntV(Value);
+        private static IValue _1 = new IntV(0);
+        private static IValue _2 = new IntV(1);
+        private PairV _obj = new PairV(_1, _2);
 
         [Fact]
         public void ConstructorTest()
         {
-            Assert.Equal(Value, _obj.Value);
+            Assert.Equal(_obj.Left, _1);
+            Assert.Equal(_obj.Right, _2);
         }
 
         [Fact]
         public void EqualsEqualTest()
         {
-            Assert.True(_obj.Equals(new IntV(Value)));
+            Assert.True(_obj.Equals(new PairV(_1, _2)));
         }
 
         [Fact]
@@ -29,25 +32,25 @@ namespace Splaak.Tests.Values
         [Fact]
         public void EqualsNotEqualValueTest()
         {
-            Assert.False(_obj.Equals(new IntV(Value - 1)));
+            Assert.False(_obj.Equals(new PairV(_1, _1)));
         }
 
         [Fact]
         public void EqualsNotEqualTypeTest()
         {
-            Assert.False(_obj.Equals(new FloatV(0)));
+            Assert.False(_obj.Equals(new IntV(0)));
         }
 
         [Fact]
         public void HashCodeEqualTest()
         {
-            Assert.Equal(_obj.GetHashCode(), new IntV(Value).GetHashCode());
+            Assert.Equal(_obj.GetHashCode(), new PairV(_1, _2).GetHashCode());
         }
 
         [Fact]
         public void ToStringTest()
         {
-            Assert.Equal(_obj.ToString(), "IntV(" + Value + ")");
+            Assert.Equal(_obj.ToString(), $"PairV({_1}, {_2})");
         }
     }
 }

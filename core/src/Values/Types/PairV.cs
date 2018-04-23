@@ -1,4 +1,4 @@
-﻿namespace Splaak.Core.Values
+﻿namespace Splaak.Core.Values.Types
 {
     /// <summary>
     /// Represents a pair.

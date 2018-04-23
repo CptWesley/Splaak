@@ -1,4 +1,4 @@
-﻿namespace Splaak.Core.Values
+﻿namespace Splaak.Core.Values.Misc
 {
     /// <summary>
     /// Represents an environment bind.

@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Text;
 using Splaak.Core.Values;
-using Environment = Splaak.Core.Values.Environment;
+using Splaak.Core.Values.Types;
+using Environment = Splaak.Core.Values.Misc.Environment;
 
 namespace Splaak.Core.CoreSyntax.Misc
 {

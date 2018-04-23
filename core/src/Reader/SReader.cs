@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Splaak.Core.Reader.Expressions;
-using Splaak.Core.Values;
 
 namespace Splaak.Core.Reader
 {

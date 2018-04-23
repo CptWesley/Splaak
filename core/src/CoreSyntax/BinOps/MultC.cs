@@ -34,10 +34,10 @@ namespace Splaak.Core.CoreSyntax.BinOps
         /// Resulting value.
         /// </returns>
         /// <exception cref="InterpretException"></exception>
-        public override IValue Interpret(Environment env)
+        public override Value Interpret(Environment env)
         {
-            IValue v1 = Argument1.Interpret(env);
-            IValue v2 = Argument2.Interpret(env);
+            Value v1 = Argument1.Interpret(env).Strict();
+            Value v2 = Argument2.Interpret(env).Strict();
 
             if (v1 is IntV   ii1 && v2 is IntV   ii2) return new IntV  (ii1.Value * ii2.Value);
             if (v1 is FloatV fi1 && v2 is IntV   fi2) return new FloatV(fi1.Value * fi2.Value);

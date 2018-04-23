@@ -6,8 +6,8 @@ namespace Splaak.Tests.Values.Types
 {
     public class PairVTests
     {
-        private static IValue _1 = new IntV(0);
-        private static IValue _2 = new IntV(1);
+        private static Value _1 = new IntV(0);
+        private static Value _2 = new IntV(1);
         private PairV _obj = new PairV(_1, _2);
 
         [Fact]

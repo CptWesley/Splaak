@@ -3,8 +3,8 @@
     /// <summary>
     /// Represents an integer.
     /// </summary>
-    /// <seealso cref="IValue" />
-    public class IntV : IValue
+    /// <seealso cref="Values.Value" />
+    public class IntV : Value
     {
         /// <summary>
         /// The integer value.

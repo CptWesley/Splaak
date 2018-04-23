@@ -31,7 +31,7 @@ namespace Splaak.Core.CoreSyntax.Types
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public override IValue Interpret(Environment env)
+        public override Value Interpret(Environment env)
         {
             return new BoolV(Value);
         }

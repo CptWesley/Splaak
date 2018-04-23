@@ -3,8 +3,8 @@
     /// <summary>
     /// Represents a null value.
     /// </summary>
-    /// <seealso cref="IValue" />
-    public class NullV : IValue
+    /// <seealso cref="Value" />
+    public class NullV : Value
     {
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance.

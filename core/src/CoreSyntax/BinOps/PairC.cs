@@ -33,9 +33,9 @@ namespace Splaak.Core.CoreSyntax.BinOps
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public override IValue Interpret(Environment env)
+        public override Value Interpret(Environment env)
         {
-            return new PairV(Left.Interpret(env), Right.Interpret(env));
+            return new PairV(new ThunkV(Left, env), new ThunkV(Right, env));
         }
 
         /// <summary>

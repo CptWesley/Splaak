@@ -3,24 +3,32 @@
     /// <summary>
     /// Represents a pair.
     /// </summary>
-    /// <seealso cref="IValue" />
-    public class PairV : IValue
+    /// <seealso cref="Value" />
+    public class PairV : Value
     {
         /// <summary>
         /// The members of the pair.
         /// </summary>
-        public readonly IValue Left, Right;
+        public readonly Value Left, Right;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PairV"/> class.
         /// </summary>
         /// <param name="left">The left element of the pair.</param>
         /// <param name="right">The right element of the pair.</param>
-        public PairV(IValue left, IValue right)
+        public PairV(Value left, Value right)
         {
             Left = left;
             Right = right;
         }
+
+        /// <summary>
+        /// Forces this value to compute all thunks recursively.
+        /// </summary>
+        /// <returns>
+        /// The fully computed variant of this value.
+        /// </returns>
+        public override Value Force() => new PairV(Left.Force(), Right.Force());
 
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance.

@@ -1,5 +1,6 @@
 ﻿using Splaak.Core.CoreSyntax.BinOps;
 using Splaak.Core.CoreSyntax.Types;
+using Splaak.Core.Values.Misc;
 using Splaak.Core.Values.Types;
 using Xunit;
 
@@ -57,7 +58,7 @@ namespace Splaak.Tests.CoreSyntax.BinOps
         [Fact]
         public void InterpretIntIntTest()
         {
-            Assert.Equal(_obj.Interpret(), new PairV(_1.Interpret(), _2.Interpret()));
+            Assert.Equal(_obj.Interpret(), new PairV(new ThunkV(_1, new Environment()), new ThunkV(_2, new Environment())));
         }
     }
 }

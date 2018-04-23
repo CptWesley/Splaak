@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using Splaak.Core.Values;
+using Splaak.Core.Values.Misc;
 using Splaak.Core.Values.Types;
 using Environment = Splaak.Core.Values.Misc.Environment;
 
@@ -42,14 +43,13 @@ namespace Splaak.Core.CoreSyntax.Misc
         /// Resulting value.
         /// </returns>
         /// <exception cref="InterpretException"></exception>
-        public override IValue Interpret(Environment env)
+        public override Value Interpret(Environment env)
         {
             foreach (Tuple<string, ExprC> bind in Binds)
                 env = env.Add(bind.Item1, new NullV());
             foreach (Tuple<string, ExprC> bind in Binds)
             {
-                // TODO: Thunks!
-                env.Update(bind.Item1, bind.Item2.Interpret(env));
+                env.Update(bind.Item1, new ThunkV(bind.Item2, env));
             }
             return Body.Interpret(env);
         }

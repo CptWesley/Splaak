@@ -35,9 +35,9 @@ namespace Splaak.Core.CoreSyntax.Misc
         /// Resulting value.
         /// </returns>
         /// <exception cref="InterpretException"></exception>
-        public override IValue Interpret(Environment env)
+        public override Value Interpret(Environment env)
         {
-            IValue condv = Condition.Interpret(env);
+            Value condv = Condition.Interpret(env).Strict();
             if (condv is BoolV cond)
             {
                 return cond.Value ? Then.Interpret() : Else.Interpret();

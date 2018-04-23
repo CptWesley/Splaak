@@ -3,8 +3,8 @@
     /// <summary>
     /// Represents a boolean.
     /// </summary>
-    /// <seealso cref="IValue" />
-    public class BoolV : IValue
+    /// <seealso cref="Values.Value" />
+    public class BoolV : Value
     {
         /// <summary>
         /// The boolean value.

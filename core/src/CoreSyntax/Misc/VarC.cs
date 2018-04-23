@@ -30,7 +30,7 @@ namespace Splaak.Core.CoreSyntax.Misc
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public override IValue Interpret(Environment env)
+        public override Value Interpret(Environment env)
         {
             return env.Lookup(Value);
         }

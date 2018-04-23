@@ -32,9 +32,9 @@ namespace Splaak.Core.CoreSyntax.UnOps
         /// Resulting value.
         /// </returns>
         /// <exception cref="InterpretException"></exception>
-        public override IValue Interpret(Environment env)
+        public override Value Interpret(Environment env)
         {
-            IValue v = Argument.Interpret(env);
+            Value v = Argument.Interpret(env).Strict();
             if (v is PairV pair)
             {
                 return pair.Right;

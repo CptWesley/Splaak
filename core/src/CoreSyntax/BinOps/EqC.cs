@@ -33,10 +33,10 @@ namespace Splaak.Core.CoreSyntax.BinOps
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public override IValue Interpret(Environment env)
+        public override Value Interpret(Environment env)
         {
-            IValue v1 = Argument1.Interpret(env);
-            IValue v2 = Argument2.Interpret(env);
+            Value v1 = Argument1.Interpret(env).Strict();
+            Value v2 = Argument2.Interpret(env).Strict();
 
             return new BoolV(v1.Equals(v2));
         }

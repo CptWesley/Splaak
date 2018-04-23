@@ -5,12 +5,12 @@ namespace Splaak.Core.Values.Misc
     /// <summary>
     /// Represents a thunk (used for delayed execution).
     /// </summary>
-    public class ThunkV
+    public class ThunkV : Value
     {
         /// <summary>
         /// The value of this thunk.
         /// </summary>
-        public IValue Value { get; private set; }
+        public Value Value { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is interpreted.
@@ -18,17 +18,17 @@ namespace Splaak.Core.Values.Misc
         /// <value>
         ///   <c>true</c> if this instance is interpreted; otherwise, <c>false</c>.
         /// </value>
-        public bool IsInterpreted { get; private set; }
+        public bool IsInterpreted => Value != null;
 
         /// <summary>
         /// The expression of the thunk.
         /// </summary>
-        public readonly ExprC Expression;
+        public ExprC Expression { get; private set; }
 
         /// <summary>
         /// The environment of the thunk.
         /// </summary>
-        public readonly Environment Environment;
+        public Environment Environment { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ThunkV"/> class.
@@ -40,7 +40,46 @@ namespace Splaak.Core.Values.Misc
             Expression = expression;
             Environment = environment;
             Value = null;
-            IsInterpreted = false;
+        }
+
+        /// <summary>
+        /// Forces this value to compute if it's a thunk.
+        /// </summary>
+        /// <returns>
+        /// The computed variant of this value.
+        /// </returns>
+        public override Value Strict()
+        {
+            if (!IsInterpreted)
+            {
+                Interpret();
+            }
+            return Value;
+        }
+
+        /// <summary>
+        /// Forces this value to compute all thunks recursively.
+        /// </summary>
+        /// <returns>
+        /// The fully computed variant of this value.
+        /// </returns>
+        public override Value Force()
+        {
+            if (!IsInterpreted)
+            {
+                Interpret();
+            }
+            return Value.Force();
+        }
+
+        /// <summary>
+        /// Interprets this instance.
+        /// </summary>
+        private void Interpret()
+        {
+            Value = Expression.Interpret(Environment);
+            Expression = null;
+            Environment = null;
         }
 
         /// <summary>

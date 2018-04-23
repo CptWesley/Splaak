@@ -21,7 +21,7 @@ namespace Splaak.Repl
                 string input = Console.ReadLine();
                 try
                 {
-                    IValue result = SInterpreter.Interpret(input);
+                    Value result = SInterpreter.Interpret(input);
                     Console.WriteLine(result);
                 }
                 catch (Exception e)

@@ -1,6 +1,7 @@
 ﻿using Splaak.Core.CoreSyntax.BinOps;
 using Splaak.Core.CoreSyntax.Types;
 using Splaak.Core.CoreSyntax.UnOps;
+using Splaak.Core.Values.Misc;
 using Xunit;
 
 namespace Splaak.Tests.CoreSyntax.UnOps
@@ -55,7 +56,7 @@ namespace Splaak.Tests.CoreSyntax.UnOps
         [Fact]
         public void InterpretTest()
         {
-            Assert.Equal(_obj.Interpret(), Value.Right.Interpret());
+            Assert.Equal(_obj.Interpret(), new ThunkV(Value.Right, new Environment()));
         }
     }
 }

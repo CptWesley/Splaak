@@ -5,8 +5,8 @@ namespace Splaak.Core.Values.Types
     /// <summary>
     /// Represents a float.
     /// </summary>
-    /// <seealso cref="IValue" />
-    public class FloatV : IValue
+    /// <seealso cref="Values.Value" />
+    public class FloatV : Value
     {
         /// <summary>
         /// The float value.

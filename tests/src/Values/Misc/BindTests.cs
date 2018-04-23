@@ -7,7 +7,7 @@ namespace Splaak.Tests.Values.Misc
 {
     public class BindTests
     {
-        private static IValue _2 = new IntV(1);
+        private static Value _2 = new IntV(1);
         private Bind _obj = new Bind(_2);
 
         [Fact]

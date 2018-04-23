@@ -17,7 +17,7 @@ namespace Splaak.Core.CoreSyntax.Types
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public override IValue Interpret(Environment env) => new NullV();
+        public override Value Interpret(Environment env) => new NullV();
 
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance.

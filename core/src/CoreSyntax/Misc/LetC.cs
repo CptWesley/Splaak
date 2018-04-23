@@ -43,7 +43,14 @@ namespace Splaak.Core.CoreSyntax.Misc
         /// <exception cref="InterpretException"></exception>
         public override IValue Interpret(Environment env)
         {
-            throw new NotImplementedException();
+            foreach (Tuple<string, ExprC> bind in Binds)
+                env = env.Add(bind.Item1, new NullV());
+            foreach (Tuple<string, ExprC> bind in Binds)
+            {
+                // TODO: Thunks!
+                env.Update(bind.Item1, bind.Item2.Interpret(env));
+            }
+            return Body.Interpret(env);
         }
 
         /// <summary>

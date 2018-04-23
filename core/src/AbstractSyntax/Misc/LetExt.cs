@@ -42,8 +42,14 @@ namespace Splaak.Core.AbstractSyntax.Misc
         /// </returns>
         public ExprC Desugar()
         {
-            List<Tuple<string, ExprC>> desugaredBinds = new List<Tuple<string, ExprC>>();
-            return new LetC(desugaredBinds.ToArray(), Body.Desugar());
+            Tuple<string, ExprC>[] desugaredBinds = new Tuple<string, ExprC>[Binds.Length];
+
+            for (int i = 0; i < Binds.Length; ++i)
+            {
+                desugaredBinds[i] = new Tuple<string, ExprC>(Binds[i].Item1, Binds[i].Item2.Desugar());
+            }
+
+            return new LetC(desugaredBinds, Body.Desugar());
         }
 
         /// <summary>

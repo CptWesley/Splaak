@@ -39,6 +39,8 @@ namespace Splaak.Core.Reader.Expressions
                     return new BoolExt(true);
                 case "false":
                     return new BoolExt(false);
+                case "null":
+                    return new NullExt();
                 default:
                     if (!ParseException.ReservedSymbols.Contains(Value))
                     {

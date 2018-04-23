@@ -1,4 +1,5 @@
 ﻿using Splaak.Core.AbstractSyntax;
+using Splaak.Core.AbstractSyntax.Misc;
 using Splaak.Core.AbstractSyntax.Types;
 using Splaak.Core.Reader.Expressions;
 using Xunit;
@@ -68,6 +69,18 @@ namespace Splaak.Tests.Reader.Expressions
         public void ParseFalseTest()
         {
             Assert.Equal(new SSym("false").Parse(), new BoolExt(false));
+        }
+
+        [Fact]
+        public void ParseNullTest()
+        {
+            Assert.Equal(new SSym("null").Parse(), new NullExt());
+        }
+
+        [Fact]
+        public void ParseVarTest()
+        {
+            Assert.Equal(_obj.Parse(), new VarExt(Value));
         }
     }
 }

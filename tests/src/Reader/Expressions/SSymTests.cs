@@ -55,7 +55,7 @@ namespace Splaak.Tests.Reader.Expressions
         [Fact]
         public void ParseExceptionTest()
         {
-            Assert.Throws<ParseException>(() => _obj.Parse());
+            Assert.Throws<ParseException>(() => new SSym("+").Parse());
         }
 
         [Fact]

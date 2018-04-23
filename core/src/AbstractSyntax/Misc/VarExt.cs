@@ -1,51 +1,37 @@
-﻿using Splaak.Core.AbstractSyntax;
-using Splaak.Core.AbstractSyntax.Misc;
-using Splaak.Core.AbstractSyntax.Types;
+﻿using Splaak.Core.CoreSyntax;
+using Splaak.Core.CoreSyntax.Misc;
 
-namespace Splaak.Core.Reader.Expressions
+namespace Splaak.Core.AbstractSyntax.Misc
 {
     /// <summary>
-    /// Represents a symbol.
+    /// Represents a variable in abstract syntax.
     /// </summary>
-    /// /// <seealso cref="ISExpression" />
-    public class SSym : ISExpression
+    /// <seealso cref="IExprExt" />
+    public class VarExt : IExprExt
     {
         /// <summary>
-        /// The symbol of the expression.
+        /// The variable name of this abstract expression.
         /// </summary>
         public readonly string Value;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SSym"/> class.
+        /// Initializes a new instance of the <see cref="VarExt"/> class.
         /// </summary>
-        /// <param name="value">The symbol of the expression.</param>
-        public SSym(string value)
+        /// <param name="value">The variable name of this abstract expression.</param>
+        public VarExt(string value)
         {
             Value = value;
         }
 
         /// <summary>
-        /// Parses this s-expression.
+        /// Desugars this abstract expression.
         /// </summary>
         /// <returns>
-        /// Abstract syntax-tree structure.
+        /// Core expression variant.
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IExprExt Parse()
+        public ExprC Desugar()
         {
-            switch (Value)
-            {
-                case "true":
-                    return new BoolExt(true);
-                case "false":
-                    return new BoolExt(false);
-                default:
-                    if (!ParseException.ReservedSymbols.Contains(Value))
-                    {
-                        return new VarExt(Value);
-                    }
-                    throw new ParseException($"Reserved symbol '{Value}' found.");
-            }
+            return new VarC(Value);
         }
 
         /// <summary>
@@ -54,7 +40,7 @@ namespace Splaak.Core.Reader.Expressions
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString() => $"SSym({Value})";
+        public override string ToString() => $"VarExt({Value})";
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
@@ -65,7 +51,7 @@ namespace Splaak.Core.Reader.Expressions
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is SSym that)
+            if (obj is VarExt that)
             {
                 return that.Value == Value;
             }

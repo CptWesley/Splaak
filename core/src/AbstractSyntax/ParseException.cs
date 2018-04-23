@@ -1,4 +1,6 @@
-﻿namespace Splaak.Core.AbstractSyntax
+﻿using System.Collections.Generic;
+
+namespace Splaak.Core.AbstractSyntax
 {
     /// <summary>
     /// Exception for when parsing the program goes wrong.
@@ -6,6 +8,17 @@
     /// <seealso cref="SplaakException" />
     public class ParseException : SplaakException
     {
+        /// <summary>
+        /// The set of reserved symbols.
+        /// </summary>
+        public static readonly HashSet<string> ReservedSymbols = new HashSet<string>
+        {
+            "and", "or", "-", "+", "*", "/", "=", "<", "<=", ">", ">=", "pair", // BinOps
+            "first", "second", "not", "-", "head", "tail", // UnOps
+            "if", "tuple", "let", "lambda", // Misc
+            "this", "null" // Other
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseException"/> class.
         /// </summary>

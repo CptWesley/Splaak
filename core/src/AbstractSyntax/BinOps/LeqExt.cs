@@ -33,10 +33,10 @@ namespace Splaak.Core.AbstractSyntax.BinOps
         /// <returns>
         /// Core expression variant.
         /// </returns>
-        public IExprC Desugar()
+        public ExprC Desugar()
         {
-            IExprC arg1 = Argument1.Desugar();
-            IExprC arg2 = Argument2.Desugar();
+            ExprC arg1 = Argument1.Desugar();
+            ExprC arg2 = Argument2.Desugar();
             return new IfC(new LtC(arg1, arg2), new BoolC(true), new EqC(arg1, arg2));
         }
 

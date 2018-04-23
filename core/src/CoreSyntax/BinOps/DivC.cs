@@ -5,35 +5,37 @@ namespace Splaak.Core.CoreSyntax.BinOps
     /// <summary>
     /// Represents a division in core syntax.
     /// </summary>
-    /// <seealso cref="IExprC" />
-    public class DivC : IExprC
+    /// <seealso cref="ExprC" />
+    public class DivC : ExprC
     {
         /// <summary>
         /// The argument of the expression.
         /// </summary>
-        public readonly IExprC Argument1, Argument2;
+        public readonly ExprC Argument1, Argument2;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DivC"/> class.
         /// </summary>
         /// <param name="arg1">The left argument of this expression.</param>
         /// <param name="arg2">The right argument of this expression.</param>
-        public DivC(IExprC arg1, IExprC arg2)
+        public DivC(ExprC arg1, ExprC arg2)
         {
             Argument1 = arg1;
             Argument2 = arg2;
         }
 
         /// <summary>
-        /// Interprets this core expression.
+        /// Interprets this core expression with an environment.
         /// </summary>
+        /// <param name="env">The env.</param>
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public IValue Interpret()
+        /// <exception cref="InterpretException"></exception>
+        public override IValue Interpret(Environment env)
         {
-            IValue v1 = Argument1.Interpret();
-            IValue v2 = Argument2.Interpret();
+            IValue v1 = Argument1.Interpret(env);
+            IValue v2 = Argument2.Interpret(env);
 
             if (v1 is IntV   ii1 && v2 is IntV   ii2) return new IntV  (ii1.Value / ii2.Value);
             if (v1 is FloatV fi1 && v2 is IntV   fi2) return new FloatV(fi1.Value / fi2.Value);

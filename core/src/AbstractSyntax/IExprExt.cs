@@ -11,6 +11,6 @@ namespace Splaak.Core.AbstractSyntax
         /// Desugars this abstract expression.
         /// </summary>
         /// <returns>Core expression variant.</returns>
-        IExprC Desugar();
+        ExprC Desugar();
     }
 }

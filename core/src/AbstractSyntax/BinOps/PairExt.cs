@@ -31,7 +31,7 @@ namespace Splaak.Core.AbstractSyntax.BinOps
         /// <returns>
         /// Core expression variant.
         /// </returns>
-        public IExprC Desugar()
+        public ExprC Desugar()
         {
             return new PairC(Left.Desugar(), Right.Desugar());
         }

@@ -1,18 +1,17 @@
-﻿using System;
-using Splaak.Core.Values;
+﻿using Splaak.Core.Values;
 
 namespace Splaak.Core.CoreSyntax.Misc
 {
     /// <summary>
     /// Represents an if-statement in the core syntax.
     /// </summary>
-    /// <seealso cref="IExprC" />
-    public class IfC : IExprC
+    /// <seealso cref="ExprC" />
+    public class IfC : ExprC
     {
         /// <summary>
         /// The arguments of the if-statement.
         /// </summary>
-        public readonly IExprC Condition, Then, Else;
+        public readonly ExprC Condition, Then, Else;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IfC"/> class.
@@ -20,7 +19,7 @@ namespace Splaak.Core.CoreSyntax.Misc
         /// <param name="condition">The condition of the if-statement.</param>
         /// <param name="then">The path taken when the condition is true.</param>
         /// <param name="els">The path taken when the condition is false.</param>
-        public IfC(IExprC condition, IExprC then, IExprC els)
+        public IfC(ExprC condition, ExprC then, ExprC els)
         {
             Condition = condition;
             Then = then;
@@ -33,10 +32,10 @@ namespace Splaak.Core.CoreSyntax.Misc
         /// <returns>
         /// Resulting value.
         /// </returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public IValue Interpret()
+        /// <exception cref="InterpretException"></exception>
+        public override IValue Interpret(Environment env)
         {
-            IValue condv = Condition.Interpret();
+            IValue condv = Condition.Interpret(env);
             if (condv is BoolV cond)
             {
                 return cond.Value ? Then.Interpret() : Else.Interpret();

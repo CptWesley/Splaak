@@ -5,8 +5,8 @@ namespace Splaak.Core.CoreSyntax.Types
     /// <summary>
     /// Represents an integer in core syntax.
     /// </summary>
-    /// <seealso cref="IExprC" />
-    public class IntC : IExprC
+    /// <seealso cref="ExprC" />
+    public class IntC : ExprC
     {
         /// <summary>
         /// The integer value of this core expression.
@@ -23,12 +23,13 @@ namespace Splaak.Core.CoreSyntax.Types
         }
 
         /// <summary>
-        /// Interprets this core expression.
+        /// Interprets this core expression with an environment.
         /// </summary>
+        /// <param name="env">The env.</param>
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public IValue Interpret()
+        public override IValue Interpret(Environment env)
         {
             return new IntV(Value);
         }

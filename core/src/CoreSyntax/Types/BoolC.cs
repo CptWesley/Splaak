@@ -5,8 +5,8 @@ namespace Splaak.Core.CoreSyntax.Types
     /// <summary>
     /// Represents a boolean in core syntax.
     /// </summary>
-    /// <seealso cref="IExprC" />
-    public class BoolC : IExprC
+    /// <seealso cref="ExprC" />
+    public class BoolC : ExprC
     {
         /// <summary>
         /// The boolean value of this core expression.
@@ -23,12 +23,13 @@ namespace Splaak.Core.CoreSyntax.Types
         }
 
         /// <summary>
-        /// Interprets this core expression.
+        /// Interprets this core expression with an environment.
         /// </summary>
+        /// <param name="env">The env.</param>
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public IValue Interpret()
+        public override IValue Interpret(Environment env)
         {
             return new BoolV(Value);
         }

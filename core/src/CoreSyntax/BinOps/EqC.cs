@@ -5,35 +5,36 @@ namespace Splaak.Core.CoreSyntax.BinOps
     /// <summary>
     /// Represents an equality check in core syntax.
     /// </summary>
-    /// <seealso cref="IExprC" />
-    public class EqC : IExprC
+    /// <seealso cref="ExprC" />
+    public class EqC : ExprC
     {
         /// <summary>
         /// The argument of the expression.
         /// </summary>
-        public readonly IExprC Argument1, Argument2;
+        public readonly ExprC Argument1, Argument2;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EqC"/> class.
         /// </summary>
         /// <param name="arg1">The left argument of this expression.</param>
         /// <param name="arg2">The right argument of this expression.</param>
-        public EqC(IExprC arg1, IExprC arg2)
+        public EqC(ExprC arg1, ExprC arg2)
         {
             Argument1 = arg1;
             Argument2 = arg2;
         }
 
         /// <summary>
-        /// Interprets this core expression.
+        /// Interprets this core expression with an environment.
         /// </summary>
+        /// <param name="env">The env.</param>
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public IValue Interpret()
+        public override IValue Interpret(Environment env)
         {
-            IValue v1 = Argument1.Interpret();
-            IValue v2 = Argument2.Interpret();
+            IValue v1 = Argument1.Interpret(env);
+            IValue v2 = Argument2.Interpret(env);
 
             return new BoolV(v1.Equals(v2));
         }

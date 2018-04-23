@@ -5,34 +5,35 @@ namespace Splaak.Core.CoreSyntax.BinOps
     /// <summary>
     /// Represents a pair in core syntax.
     /// </summary>
-    /// <seealso cref="IExprC" />
-    public class PairC : IExprC
+    /// <seealso cref="ExprC" />
+    public class PairC : ExprC
     {
         /// <summary>
         /// The elements of the pair.
         /// </summary>
-        public readonly IExprC Left, Right;
+        public readonly ExprC Left, Right;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PairC"/> class.
         /// </summary>
         /// <param name="left">The left argument of this pair.</param>
         /// <param name="right">The right argument of this pair.</param>
-        public PairC(IExprC left, IExprC right)
+        public PairC(ExprC left, ExprC right)
         {
             Left = left;
             Right = right;
         }
 
         /// <summary>
-        /// Interprets this core expression.
+        /// Interprets this core expression with an environment.
         /// </summary>
+        /// <param name="env">The env.</param>
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public IValue Interpret()
+        public override IValue Interpret(Environment env)
         {
-            return new PairV(Left.Interpret(), Right.Interpret());
+            return new PairV(Left.Interpret(env), Right.Interpret(env));
         }
 
         /// <summary>

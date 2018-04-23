@@ -30,7 +30,7 @@ namespace Splaak.Core.AbstractSyntax.UnOps
         /// <returns>
         /// Core expression variant.
         /// </returns>
-        public IExprC Desugar()
+        public ExprC Desugar()
         {
             return new MultC(new IntC(-1), Argument.Desugar());
         }

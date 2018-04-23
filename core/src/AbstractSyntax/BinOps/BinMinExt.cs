@@ -32,7 +32,7 @@ namespace Splaak.Core.AbstractSyntax.BinOps
         /// <returns>
         /// Core expression variant.
         /// </returns>
-        public IExprC Desugar()
+        public ExprC Desugar()
         {
             return new PlusC(Argument1.Desugar(), new MultC(new IntC(-1), Argument2.Desugar()));
         }

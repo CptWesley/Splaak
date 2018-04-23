@@ -30,7 +30,7 @@ namespace Splaak.Core.AbstractSyntax.Misc
         /// <returns>
         /// Core expression variant.
         /// </returns>
-        public IExprC Desugar()
+        public ExprC Desugar()
         {
             PairC result = new PairC(
                     Elements[Elements.Length - 2].Desugar(),

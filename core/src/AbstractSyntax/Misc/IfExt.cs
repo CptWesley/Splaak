@@ -33,7 +33,7 @@ namespace Splaak.Core.AbstractSyntax.Misc
         /// <returns>
         /// Core expression variant.
         /// </returns>
-        public IExprC Desugar()
+        public ExprC Desugar()
         {
             return new IfC(Condition.Desugar(), Then.Desugar(), Else.Desugar());
         }

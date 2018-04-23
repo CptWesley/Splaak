@@ -5,32 +5,34 @@ namespace Splaak.Core.CoreSyntax.UnOps
     /// <summary>
     /// Represents a getter for the first element of a pair.
     /// </summary>
-    /// <seealso cref="IExprC" />
-    public class FirstC : IExprC
+    /// <seealso cref="ExprC" />
+    public class FirstC : ExprC
     {
         /// <summary>
         /// The pair to extract the first element from.
         /// </summary>
-        public readonly IExprC Argument;
+        public readonly ExprC Argument;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstC"/> class.
         /// </summary>
         /// <param name="arg">The pair to extract the first element from.</param>
-        public FirstC(IExprC arg)
+        public FirstC(ExprC arg)
         {
             Argument = arg;
         }
 
         /// <summary>
-        /// Interprets this core expression.
+        /// Interprets this core expression with an environment.
         /// </summary>
+        /// <param name="env">The env.</param>
         /// <returns>
         /// Resulting value.
         /// </returns>
-        public IValue Interpret()
+        /// <exception cref="InterpretException"></exception>
+        public override IValue Interpret(Environment env)
         {
-            IValue v = Argument.Interpret();
+            IValue v = Argument.Interpret(env);
             if (v is PairV pair)
             {
                 return pair.Left;

@@ -101,6 +101,10 @@ namespace Splaak.Core.Reader.Expressions
                 {
                     return new TupleExt(Expressions.Skip(1).Select(e => e.Parse()).ToArray());
                 }
+                else if (Expressions.Length >= 3 && op.Value == "seq")
+                {
+                    return new SeqExt(Expressions.Skip(1).Select(e => e.Parse()).ToArray());
+                }
             }
             throw new ParseException();
         }

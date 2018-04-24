@@ -15,7 +15,7 @@ namespace Splaak.Core.AbstractSyntax
         {
             "and", "or", "-", "+", "*", "/", "=", "<", "<=", ">", ">=", "pair", // BinOps
             "first", "second", "not", "-", "head", "tail", // UnOps
-            "if", "tuple", "let", "lambda", // Misc
+            "if", "tuple", "let", "lambda", "seq", // Misc
             "this", "null" // Other
         };
 

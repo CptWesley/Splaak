@@ -52,7 +52,9 @@ namespace Splaak.Core.Values.Misc
         {
             if (!IsInterpreted)
             {
-                Interpret();
+                Value = Expression.Interpret(Environment);
+                Expression = null;
+                Environment = null;
             }
             return Value;
         }
@@ -67,19 +69,11 @@ namespace Splaak.Core.Values.Misc
         {
             if (!IsInterpreted)
             {
-                Interpret();
+                Value = Expression.Interpret(Environment).Force();
+                Expression = null;
+                Environment = null;
             }
             return Value.Force();
-        }
-
-        /// <summary>
-        /// Interprets this instance.
-        /// </summary>
-        private void Interpret()
-        {
-            Value = Expression.Interpret(Environment);
-            Expression = null;
-            Environment = null;
         }
 
         /// <summary>
@@ -130,9 +124,9 @@ namespace Splaak.Core.Values.Misc
         {
             if (IsInterpreted)
             {
-                return GetHashCode() * Value.GetHashCode();
+                return GetType().GetHashCode() * Value.GetHashCode();
             }
-            return GetHashCode() * Expression.GetHashCode() * Environment.GetHashCode();
+            return GetType().GetHashCode() * Expression.GetHashCode() * Environment.GetHashCode();
         }
     }
 }

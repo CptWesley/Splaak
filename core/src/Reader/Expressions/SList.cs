@@ -103,6 +103,12 @@ namespace Splaak.Core.Reader.Expressions
                                 return new LetExt(abstractBinds, Expressions[2].Parse());
                             }
                             break;
+                        case "set":
+                            if (Expressions[1] is SSym sym)
+                            {
+                                return new SetExt(sym.Value, Expressions[2].Parse());
+                            }
+                            throw new ParseException($"Argument '{Expressions[1]}' of 'set' should be a symbol.");
                     }
                 }
             }

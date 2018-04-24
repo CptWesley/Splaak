@@ -15,7 +15,7 @@ namespace Splaak.Core
         /// <returns>The interpreted input.</returns>
         public static Value Interpret(this string input)
         {
-            return input.Read().Parse().Desugar().Interpret();
+            return input.Read().Parse().Desugar().Interpret().Force();
         }
     }
 }

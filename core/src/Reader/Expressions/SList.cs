@@ -37,7 +37,19 @@ namespace Splaak.Core.Reader.Expressions
         {
             if (Expressions[0] is SSym op)
             {
-                if (Expressions.Length == 2)
+                if (Expressions.Length == 4 && op.Value == "if")
+                {
+                    return new IfExt(Expressions[1].Parse(), Expressions[2].Parse(), Expressions[3].Parse());
+                }
+                else if (Expressions.Length >= 3 && op.Value == "tuple")
+                {
+                    return new TupleExt(Expressions.Skip(1).Select(e => e.Parse()).ToArray());
+                }
+                else if (Expressions.Length >= 3 && op.Value == "seq")
+                {
+                    return new SeqExt(Expressions.Skip(1).Select(e => e.Parse()).ToArray());
+                }
+                else if (Expressions.Length == 2)
                 {
                     switch (op.Value)
                     {
@@ -92,18 +104,6 @@ namespace Splaak.Core.Reader.Expressions
                             }
                             break;
                     }
-                }
-                else if (Expressions.Length == 4 && op.Value == "if")
-                {
-                    return new IfExt(Expressions[1].Parse(), Expressions[2].Parse(), Expressions[3].Parse());
-                }
-                else if (Expressions.Length >= 3 && op.Value == "tuple")
-                {
-                    return new TupleExt(Expressions.Skip(1).Select(e => e.Parse()).ToArray());
-                }
-                else if (Expressions.Length >= 3 && op.Value == "seq")
-                {
-                    return new SeqExt(Expressions.Skip(1).Select(e => e.Parse()).ToArray());
                 }
             }
             throw new ParseException();
